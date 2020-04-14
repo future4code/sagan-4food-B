@@ -7,6 +7,8 @@ import * as S from './styles'
 
 import Appbar from '../../components/Appbar';
 import CardHistory from '../../components/CardHistory';
+import Backdrop from '../../components/Backdrop';
+import CardConfirmQuantity from '../../components/CardConfirmQuantity';
 
 function ProfilePage(props) {
 
