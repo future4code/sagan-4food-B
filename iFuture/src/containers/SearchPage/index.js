@@ -97,7 +97,7 @@ function SearchPage(props) {
 
                         : <S.SearchWrapper>
                             {restaurantsFiltered.map(restaurant => (
-                                <CardRestaurant key={restaurant} restaurant={restaurant} />
+                                <CardRestaurant key={restaurant.id} restaurant={restaurant} />
                             ))}
                         </S.SearchWrapper>
                 }

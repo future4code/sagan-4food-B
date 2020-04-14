@@ -69,7 +69,7 @@ function FeedPage(props) {
   ]
 
   const allCategories = restaurants.map(restaurant => restaurant.category)
-  const categories = allCategories.filter((el, i, arr) => arr.indexOf(el) == i);
+  const categories = allCategories.filter((el, i, arr) => arr.indexOf(el) === i);
 
   const selectCategory = (category) => {
     setCategorySelected(category)
@@ -114,7 +114,7 @@ function FeedPage(props) {
 
         <S.Restaurants>
           {restaurantsAppears.map(restaurant => (
-            <CardRestaurant key={restaurant} restaurant={restaurant} />
+            <CardRestaurant key={restaurant.id} restaurant={restaurant} />
           ))}
         </S.Restaurants>
 
