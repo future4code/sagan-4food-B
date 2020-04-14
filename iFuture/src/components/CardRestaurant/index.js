@@ -26,7 +26,7 @@ function CardRestaurant(props){
                 </S.RestaurantName>
                 <S.InfoFooter>
                     <S.RestaurantInfo>
-                        {restaurant.deliveryTime} min
+                        {restaurant.deliveryTime} - {restaurant.deliveryTime + 10} min
                     </S.RestaurantInfo>
                     <S.RestaurantInfo>
                         Frete {restaurant.shipping.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
@@ -38,14 +38,3 @@ function CardRestaurant(props){
 }
 
 export default CardRestaurant
-
-// {
-//     id: "7",
-//     deliveryTime: 20,
-//     category: "Italiana",
-//     description: "Restaurante Self Service e lanchonete localizado no Laboratório Nacional de Computação Científica",
-//     shipping: 2,
-//     address: "Rua Barão do Rio Branco, 98 - Centro",
-//     name: "Cantina Mamma Perrotta 2",
-//     logoUrl: "http://soter.ninja/futureFoods/logos/cantinamammaperrotta.jpg"
-//   },
