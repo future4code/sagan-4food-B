@@ -15,11 +15,15 @@ export const FilterScroll = styled.div`
     display: flex;
     overflow-x: auto;
     align-items: center;
+    margin: 8px 0;
+
     overflow-x: auto;
     :-webkit-scrollbar { 
         display: none;
     }
-    margin: 8px 0;
+    .scrolling-wrapper {
+        -webkit-overflow-scrolling: touch;
+    }
 `
 
 export const Category = styled(Typography)`
@@ -35,8 +39,8 @@ export const Category = styled(Typography)`
     letter-spacing: -0.39px;
     text-align: center;
     color: #000000;
-    :hover, :active{
-        color: #e8222e;
+    :hover{
+        color: ${props => props.personalizedColor ? "#e8222e" : "#000000"};
     }
 `
 
