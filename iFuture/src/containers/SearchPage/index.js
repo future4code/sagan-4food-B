@@ -5,8 +5,8 @@ import { setInputSearch } from '../../actions/search'
 import * as S from './styles'
 import { TextField, InputAdornment } from '@material-ui/core'
 
-import Search from '../../components/Search'
 import Appbar from '../../components/Appbar'
+import CardRestaurant from '../../components/CardRestaurant'
 
 function SearchPage(props) {
 
@@ -17,6 +17,8 @@ function SearchPage(props) {
     }
 
     const restaurants = ['a', 'b', 'c']
+
+    const restaurantsFiltered = restaurants.filter(restaurant => restaurant.toLowerCase().includes(inputSearch.toLowerCase()))
 
     return (
         <S.SearchPageWrapper>
@@ -30,23 +32,33 @@ function SearchPage(props) {
                     variant='outlined'
                     placeholder='Restaurante'
                     InputProps={{
-                        startAdornment: (
-                            <InputAdornment position="start">
+                        startAdornment: (<InputAdornment position="start">
                                 <img src={require("../../assets/search.svg")} alt='Voltar' />
-                            </InputAdornment>
-                        ),
+                            </InputAdornment>),
                     }}
                 />
 
                 {inputSearch === ''
-                    
+
                     ? <S.CenteredContent>
                         <S.MessageSearch>
                             Busque por nome de restaurante
                         </S.MessageSearch>
                     </S.CenteredContent>
 
-                    : <Search restaurants={restaurants} />
+                    : restaurantsFiltered.length === 0
+
+                        ? <S.CenteredContent>
+                            <S.MessageSearch>
+                                Não encontramos :(
+                            </S.MessageSearch>
+                        </S.CenteredContent>
+
+                        : <S.SearchWrapper>
+                            {restaurantsFiltered.map(restaurant => (
+                                <CardRestaurant key={restaurant} restaurant={restaurant} />
+                            ))}
+                        </S.SearchWrapper>
                 }
 
             </S.Container>

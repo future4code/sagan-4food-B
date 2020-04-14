@@ -22,3 +22,9 @@ export const MessageSearch = styled(Typography)`
     font-size: 16px;
     letter-spacing: -0.4px;
 `
+
+export const SearchWrapper = styled.div`
+    margin: 8px 0;
+    display: flex;
+    flex-direction: column;
+`
