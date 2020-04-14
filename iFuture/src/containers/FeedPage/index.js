@@ -2,7 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { setInputSearch } from '../../actions/search'
 
+import * as S from './styles'
+import { TextField, InputAdornment } from '@material-ui/core'
+
+
 import Appbar from '../../components/Appbar';
+import CardRestaurant from '../../components/CardRestaurant';
+import Search from '../../components/Search';
 
 function FeedPage(props) {
 
@@ -12,15 +18,60 @@ function FeedPage(props) {
     setInputSearch(e.target.value)
   }
 
+  const categories = ['Burger', 'Asiática', 'Massas', 'Saudáveis', 'Árabe', 'Lalala', 'aaaaa', 'bbbbb']
+
+  const restaurants = ['a', 'b', 'c']
+
   return (
-    <div>
-      <Appbar page='feed'/>
-      FeedPage
-      <input 
-        value={inputSearch}
-        onChange={handleInputSearchChange}
-      />
-    </div>
+    <S.FeedPageWrapper>
+      <Appbar page='feed' />
+
+      <S.Container>
+
+        <TextField
+          value={inputSearch}
+          onChange={handleInputSearchChange}
+          fullWidth
+          variant='outlined'
+          placeholder='Restaurante'
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <img src={require("../../assets/search.svg")} alt='Voltar' />
+              </InputAdornment>
+            ),
+          }}
+        />
+
+        {inputSearch === ''
+          ?
+          <>
+            <S.FilterScroll>
+              {categories.map(category => (
+                <S.Category key={category}>
+                  {category}
+                </S.Category>
+              ))}
+            </S.FilterScroll>
+
+            <S.Restaurants>
+              {restaurants.map(restaurant => (
+                <CardRestaurant key={restaurant} restaurant={restaurant} />
+              ))}
+            </S.Restaurants>
+          </>
+          :
+
+          <Search restaurants={restaurants}/>
+
+        }
+
+
+
+
+      </S.Container>
+
+    </S.FeedPageWrapper>
   )
 }
 
