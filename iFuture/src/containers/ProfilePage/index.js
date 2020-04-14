@@ -10,16 +10,7 @@ import CardHistory from '../../components/CardHistory';
 
 function ProfilePage(props) {
 
-  const { goToProfileEdit, goToAdressEdit} = props
-
-  const userMock = {
-    id: "De8UACSFgFySnKdXm5hI",
-    name: "Astrodev",
-    email: "astrodev@future4.com",
-    cpf: "111.111.111-11",
-    hasAddress: true,
-    address: "R. Afonso Braz, 177 - Vila N. Conceição"
-  }
+  const { user, goToProfileEdit, goToAdressEdit} = props
 
   const orderHistoryListMock = [
     {
@@ -45,17 +36,17 @@ function ProfilePage(props) {
       
       <S.Container>
 
-        <S.TextStyled> {userMock.name} </S.TextStyled>
+        <S.TextStyled> {user.name} </S.TextStyled>
 
-        <S.TextStyled> {userMock.email} </S.TextStyled>
+        <S.TextStyled> {user.email} </S.TextStyled>
 
-        <S.TextStyled> {userMock.cpf} </S.TextStyled>
+        <S.TextStyled> {user.cpf} </S.TextStyled>
 
         <S.IconEdit src={require("../../assets/edit.svg")} alt='Voltar' onClick={goToProfileEdit}/>
 
         <S.AdressContainer>
           <S.TextStyled grey> Endereço cadastrado </S.TextStyled>
-          <S.TextStyled> {userMock.address} </S.TextStyled>
+          <S.TextStyled> {user.address} </S.TextStyled>
           <S.IconEdit src={require("../../assets/edit.svg")} alt='Voltar' onClick={goToAdressEdit}/>
         </S.AdressContainer>
 
@@ -70,9 +61,13 @@ function ProfilePage(props) {
   )
 }
 
+const mapStateToProps = (state) => ({
+  user: state.user.user
+})
+
 const mapDispatchToProps = (dispatch) => ({
   goToProfileEdit: () => dispatch(push(routes.profileEdit)),
   goToAdressEdit: () => dispatch(push(routes.adressEdit)),
 })
 
-export default connect(null, mapDispatchToProps)(ProfilePage);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);
