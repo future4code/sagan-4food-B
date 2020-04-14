@@ -1,6 +1,7 @@
 import React from "react";
 import { ConnectedRouter } from "connected-react-router";
 import { Switch, Route } from "react-router-dom";
+
 import AdressEditPage from "../AdressEditPage";
 import LoginPage from "../LoginPage";
 import SignupPage from "../SignupPage";
@@ -10,12 +11,14 @@ import ProfilePage from "../ProfilePage";
 import ProfileEditPage from "../ProfileEditPage";
 import CartPage from "../CartPage";
 import RestaurantPage from "../RestaurantPage";
+import SearchPage from "../SearchPage";
 
 export const routes = {
   login: '/',
   signup: '/signup',
   adressRegister: '/adressRegister',
   feed: '/feed',
+  search: '/search',
   restaurant: '/restaurant',
   profile: '/profile',
   profileEdit: '/profileEdit',
@@ -31,6 +34,7 @@ function Router(props) {
         <Route exact path={routes.signup} component={() => <SignupPage/>} />
         <Route exact path={routes.adressRegister} component={() => <AdressRegisterPage/>} />
         <Route exact path={routes.feed} component={() => <FeedPage/>} />
+        <Route exact path={routes.search} component={() => <SearchPage/>} />
         <Route exact path={routes.restaurant} component={() => <RestaurantPage/>} />
         <Route exact path={routes.profile} component={() => <ProfilePage/>} />
         <Route exact path={routes.profileEdit} component={() => <ProfileEditPage/>} />
