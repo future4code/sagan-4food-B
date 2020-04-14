@@ -25,7 +25,7 @@ export const FilterScroll = styled.div`
 export const Category = styled(Typography)`
     flex: 0 0 auto;
     height: 18px;
-    width: 87px;
+    min-width: 87px;
     margin-right: 8px;
     font-size: 16px;
     font-weight: normal;

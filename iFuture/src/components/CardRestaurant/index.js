@@ -7,7 +7,7 @@ function CardRestaurant(props){
 
     return (
         <S.CardRestaurantWrapper>
-            {restaurant}
+            {restaurant.name}
         </S.CardRestaurantWrapper>
     )
 }
