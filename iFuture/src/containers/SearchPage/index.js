@@ -59,7 +59,7 @@ function SearchPage(props) {
         },
       ]
 
-    const restaurantsFiltered = restaurants.filter(restaurant => restaurant.name.toLowerCase().includes(inputSearch.toLowerCase()))
+    const restaurantsFiltered = restaurants.filter(restaurant => restaurant.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(inputSearch.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "")))
 
     return (
         <S.SearchPageWrapper>
