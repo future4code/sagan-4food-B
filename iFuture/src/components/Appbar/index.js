@@ -1,19 +1,37 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { push } from 'connected-react-router'
+import { routes } from '../../containers/Router'
+
+import { setInputSearch } from '../../actions/search'
+
 import * as S from './styles'
-import { AppBar, Toolbar, Typography } from '@material-ui/core'
+import { Toolbar, Typography } from '@material-ui/core'
 
 function Appbar(props) {
-    const { page, inputSearch } = props
+    const {
+        page,
+        inputSearch,
+        setInputSearch,
+        goToLogin,
+        goToFeed,
+        goToProfile
+    } = props
 
-    const buttonReturn = <img src={require("../../assets/back.png")} alt='Voltar' />
+    const buttonReturn = <img src={require("../../assets/back.svg")} alt='Voltar' />
+
+    const clearSearch = () => {
+        setInputSearch('')
+    }
 
     let content
     switch (page) {
 
-        case 'login':
         case 'signup':
         case 'adressRegister':
-            content = <S.SpaceContent>{buttonReturn}</S.SpaceContent>
+            content = <S.SpaceContent>
+                <S.Button onClick={goToLogin}>{buttonReturn}</S.Button>
+            </S.SpaceContent>
             break;
 
         case 'feed':
@@ -25,7 +43,7 @@ function Appbar(props) {
                     </S.CenteredContent>
                     :
                     <S.SpaceContent>
-                        {buttonReturn}
+                        <S.Button onClick={clearSearch}>{buttonReturn}</S.Button>
                         <Typography variant="h6">Busca</Typography>
                         <div></div>
                     </S.SpaceContent>
@@ -41,7 +59,7 @@ function Appbar(props) {
 
         case 'restaurant':
             content = <S.SpaceContent>
-                {buttonReturn}
+                <S.Button onClick={goToFeed}>{buttonReturn}</S.Button>
                 <Typography variant="h6">Restaurante</Typography>
                 <div></div>
             </S.SpaceContent>
@@ -55,7 +73,7 @@ function Appbar(props) {
 
         case 'profileEdit':
             content = <S.SpaceContent>
-                {buttonReturn}
+                <S.Button onClick={goToProfile}>{buttonReturn}</S.Button>
                 <Typography variant="h6">Editar</Typography>
                 <div></div>
             </S.SpaceContent>
@@ -63,7 +81,7 @@ function Appbar(props) {
 
         case 'adressEdit':
             content = <S.SpaceContent>
-                {buttonReturn}
+                <S.Button onClick={goToProfile}>{buttonReturn}</S.Button>
                 <Typography variant="h6">Endereço</Typography>
                 <div></div>
             </S.SpaceContent>
@@ -75,12 +93,23 @@ function Appbar(props) {
     }
 
     return (
-        <AppBar color="white" position="static">
+        <S.AppbarStyled position="static">
             <Toolbar>
                 {content}
             </Toolbar>
-        </AppBar>
+        </S.AppbarStyled>
     )
 }
 
-export default Appbar
+const mapStateToProps = (state) => ({
+    inputSearch: state.search.inputSearch
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    setInputSearch: (inputContent) => dispatch(setInputSearch(inputContent)),
+    goToLogin: () => dispatch(push(routes.login)),
+    goToFeed: () => dispatch(push(routes.feed)),
+    goToProfile: () => dispatch(push(routes.profile))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Appbar)

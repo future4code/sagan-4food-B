@@ -1,8 +1,11 @@
 import { combineReducers } from "redux";
 import { connectRouter } from "connected-react-router";
 
+import search from './search'
+
 export const generateReducers = history =>
   combineReducers({
-    router: connectRouter(history)
-    // Outros reducers aqui
+    router: connectRouter(history),
+    search
+
   });
