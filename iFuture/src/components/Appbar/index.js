@@ -3,26 +3,18 @@ import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 import { routes } from '../../containers/Router'
 
-import { setInputSearch } from '../../actions/search'
-
 import * as S from './styles'
 import { Toolbar, Typography } from '@material-ui/core'
 
 function Appbar(props) {
     const {
         page,
-        inputSearch,
-        setInputSearch,
         goToLogin,
         goToFeed,
         goToProfile
     } = props
 
     const buttonReturn = <img src={require("../../assets/back.svg")} alt='Voltar' />
-
-    const clearSearch = () => {
-        setInputSearch('')
-    }
 
     let content
     switch (page) {
@@ -35,20 +27,18 @@ function Appbar(props) {
             break;
 
         case 'feed':
-            content = <>
-                {inputSearch === ''
-                    ?
-                    <S.CenteredContent>
-                        <Typography variant="h6">Ifuture</Typography>
-                    </S.CenteredContent>
-                    :
-                    <S.SpaceContent>
-                        <S.Button onClick={clearSearch}>{buttonReturn}</S.Button>
-                        <Typography variant="h6">Busca</Typography>
-                        <div></div>
-                    </S.SpaceContent>
-                }
-            </>
+            content = <S.CenteredContent>
+                <Typography variant="h6">Ifuture</Typography>
+            </S.CenteredContent>
+            break;
+
+        case 'search':
+            content = <S.SpaceContent>
+                <S.Button onClick={goToFeed}>{buttonReturn}</S.Button>
+                <Typography variant="h6">Busca</Typography>
+                <div></div>
+            </S.SpaceContent>
+
             break;
 
         case 'cart':
@@ -101,15 +91,10 @@ function Appbar(props) {
     )
 }
 
-const mapStateToProps = (state) => ({
-    inputSearch: state.search.inputSearch
-})
-
 const mapDispatchToProps = (dispatch) => ({
-    setInputSearch: (inputContent) => dispatch(setInputSearch(inputContent)),
     goToLogin: () => dispatch(push(routes.login)),
     goToFeed: () => dispatch(push(routes.feed)),
     goToProfile: () => dispatch(push(routes.profile))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Appbar)
+export default connect(null, mapDispatchToProps)(Appbar)
