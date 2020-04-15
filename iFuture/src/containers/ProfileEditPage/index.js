@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import Appbar from '../../components/Appbar';
-import Textfield from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
-import { DivWrapper, FormWrapper } from './styled'
-import OrdersInProgress from '../../components/OrdersInProgress';
+
+
+import * as S from './styles'
 
 const editUserProfile = [
   {
@@ -58,31 +57,34 @@ class ProfileEditPage extends Component {
   }
   render() {
     return (
-      <DivWrapper>
+      <S.DivWrapper>
         <Appbar page='profileEdit' />
-        <FormWrapper onSubmit={this.handleSubmission}>
-          {editUserProfile.map(field => {
-            return (
-              <Textfield
-                key={field.name}
-                variant="outlined"
-                margin="normal"
-                label={field.label}
-                name={field.name}
-                placeholder={field.placeholder}
-                type={field.type}
-                inputProps={{ pattern: field.pattern }}
-                required={field.required}
-                title={field.title}
-                value={this.state.form[field.name]}
-                onChange={this.handleInput}
-              />
-            )
-          })}
-          <Button type='submit' variant='contained' color='primary'>Salvar</Button>
-        </FormWrapper>
-        <OrdersInProgress />
-      </DivWrapper>
+        <S.Content>
+          <S.FormWrapper onSubmit={this.handleSubmission}>
+            {editUserProfile.map(field => {
+              return (
+                <S.Input
+                  key={field.name}
+                  variant="outlined"
+                  label={field.label}
+                  name={field.name}
+                  placeholder={field.placeholder}
+                  type={field.type}
+                  inputProps={{ pattern: field.pattern }}
+                  required={field.required}
+                  title={field.title}
+                  value={this.state.form[field.name]}
+                  onChange={this.handleInput}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+              )
+            })}
+            <S.ButtonSave type='submit' variant='contained'>Salvar</S.ButtonSave>
+          </S.FormWrapper>
+        </S.Content>
+      </S.DivWrapper>
     )
   }
 }
