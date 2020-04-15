@@ -8,6 +8,7 @@ import { Typography, InputAdornment } from '@material-ui/core';
 function LoginPage(props) {
 
   const [userInfo, setUserInfo] = useState({})
+  const [hidenPassword, setHidenPassword] = useState(false)
 
   function goToSignUp(){
     props.goToSignUp()
@@ -34,28 +35,32 @@ function LoginPage(props) {
         <S.InputWrapper
         name='email'
         variant="outlined"
-        label="E-mail*"
+        label="E-mail"
         placeholder='email@email.com'
         type='text'
         value={userInfo.email || ''}
         onChange={getUserInfo}
         required
+        inputProps={{ pattern: '[^@]+@[^\.]+\..+' }}
         />
         <S.InputWrapper
         name='password'
         variant="outlined"
-        label="Senha*"
+        label="Senha"
         placeholder='mínimo 6 caracteres'
-        type='text'
+        type={hidenPassword? 'text' : 'password'}
         value={userInfo.password || ''}
         onChange={getUserInfo}
         required
+        inputProps={{ pattern: '^.{6,}' }}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
-              <S.ImgWrapper src={require('../../assets/senha.png')}/>
+              <S.ImgWrapper 
+              onClick={()=>setHidenPassword(!hidenPassword)}
+              src={hidenPassword? require('../../assets/olho.png') : require('../../assets/senha.png')}/>
             </InputAdornment>
-          ),
+          )
         }}
         />
         <S.ButtonWrapper
