@@ -7,10 +7,11 @@ import * as S from './styles'
 
 import Appbar from '../../components/Appbar';
 import CardHistory from '../../components/CardHistory';
+import { Typography } from '@material-ui/core';
 
 function ProfilePage(props) {
 
-  const { user, goToProfileEdit, goToAdressEdit} = props
+  const { user, goToProfileEdit, goToAdressEdit } = props
 
   const orderHistoryListMock = [
     {
@@ -32,8 +33,8 @@ function ProfilePage(props) {
 
   return (
     <S.ProfilePageWrapper>
-      <Appbar page='profile'/>
-      
+      <Appbar page='profile' />
+
       <S.Container>
 
         <S.TextStyled> {user.name} </S.TextStyled>
@@ -42,19 +43,28 @@ function ProfilePage(props) {
 
         <S.TextStyled> {user.cpf} </S.TextStyled>
 
-        <S.IconEdit src={require("../../assets/edit.svg")} alt='Voltar' onClick={goToProfileEdit}/>
+        <S.IconEdit src={require("../../assets/edit.svg")} alt='Voltar' onClick={goToProfileEdit} />
 
         <S.AdressContainer>
           <S.TextStyled grey> Endereço cadastrado </S.TextStyled>
           <S.TextStyled> {user.address} </S.TextStyled>
-          <S.IconEdit src={require("../../assets/edit.svg")} alt='Voltar' onClick={goToAdressEdit}/>
+          <S.IconEdit src={require("../../assets/edit.svg")} alt='Voltar' onClick={goToAdressEdit} />
         </S.AdressContainer>
 
         <S.TextStyled line> Histórico de pedidos </S.TextStyled>
 
-        {orderHistoryListMock.map(order => (
-          <CardHistory key={order} order={order}/>
-        ))}
+        {orderHistoryListMock.length === 0
+          ?
+          <S.EmptyOrders>
+            <S.EmptyOrdersText>
+              Você não realizou nenhum pedido
+            </S.EmptyOrdersText>
+          </S.EmptyOrders>
+          :
+          orderHistoryListMock.map(order => (
+            <CardHistory key={order} order={order} />
+          ))
+        }
 
       </S.Container>
     </S.ProfilePageWrapper>

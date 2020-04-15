@@ -35,3 +35,15 @@ export const IconEdit = styled.img`
     position: absolute;
     right: 0;
 `
+
+export const EmptyOrders = styled.div`
+    text-align: center;
+    margin-top: 16px;
+`
+
+export const EmptyOrdersText = styled(Typography)`
+    letter-spacing: -0.39px;
+    font-size: 16px;
+    color: #000000;
+    opacity: 0.89;
+`
