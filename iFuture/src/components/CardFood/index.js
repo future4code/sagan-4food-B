@@ -1,10 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux'
+
+import { setDialog } from '../../actions/confirmationDialog'
 
 import { Typography } from '@material-ui/core';
 import * as S from './styles'
 
+import ConfirmationDialog from '../ConfirmationDialog';
+
 function CardFood(props) {
-  const { item } = props
+  const { item, setOpen } = props
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
   return (
     <S.CardWrapper key={item.id} elevation={0}>
@@ -30,13 +39,19 @@ function CardFood(props) {
 
       {item.quantity !== 0
         ?
-        <S.ButtonAddRemove className="buttom" variant="outlined" color="default">
-          adicionar
-              </S.ButtonAddRemove>
+        <>
+          <S.ButtonAddRemove 
+            className="buttom" variant="outlined" color="default"
+            onClick={handleClickOpen}
+          >
+            adicionar
+          </S.ButtonAddRemove>
+          <ConfirmationDialog/>
+        </>     
         :
         <S.ButtonAddRemove className="buttom" variant="outlined" color="primary" marginRed>
           remover
-              </S.ButtonAddRemove>
+        </S.ButtonAddRemove>
       }
 
       {item.quantity !== 0 &&
@@ -48,4 +63,8 @@ function CardFood(props) {
   )
 }
 
-export default CardFood;
+const mapDispatchToProps = dispatch => ({
+  setOpen: (option) => dispatch(setDialog(option))
+})
+
+export default connect(null, mapDispatchToProps)(CardFood)
