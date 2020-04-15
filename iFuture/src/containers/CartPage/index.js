@@ -4,8 +4,10 @@ import Appbar from '../../components/Appbar';
 
 import restaurant from '../RestaurantPage/mock'
 import CardFood from '../../components/CardFood';
+import Bottombar from '../../components/Bottombar';
 
 function CartPage() {
+  // const restaurant = { products: [] }
   const [payment, setpayment] = useState({paymentMethod: ''})
 
   function savePaymentMethod(e){
@@ -41,11 +43,10 @@ function CartPage() {
   </S.OrderInfoWrapper>
 
   return (
-
-    <S. ContentWrapper 
-    height={restaurant.products.length === 0? '640 px' : '781 px'}>
+    <S.ContentWrapper>
       <Appbar page='cart'/>
       
+      <S.Container>
       <S.AdressBoxWrapper>
 
         <S.AdressTitleWrapper>
@@ -120,7 +121,11 @@ function CartPage() {
           </S.ButtonTitleWrapper>
         </S.ConfirmButtonWrapper>
       </S.FormWrapper>
-    </S. ContentWrapper>
+
+      </S.Container>
+
+      <Bottombar page='cart'/>
+    </S.ContentWrapper>
   )
 }
 

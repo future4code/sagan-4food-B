@@ -2,14 +2,21 @@ import styled from 'styled-components'
 import {Typography, Button} from '@material-ui/core'
 
 export const ContentWrapper = styled.div`
+  background-color: white;
+  height: 100vh;
+`
+
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height:  ${props => props.height}
-  margin: 0 auto
+  margin: 0 auto;
+  margin-bottom: 64px;
 `
+
+
 export const AdressBoxWrapper = styled.div`
   width: 100%;
   height: 76px;

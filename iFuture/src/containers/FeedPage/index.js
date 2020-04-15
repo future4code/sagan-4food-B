@@ -10,6 +10,7 @@ import { TextField, InputAdornment } from '@material-ui/core'
 
 import Appbar from '../../components/Appbar';
 import CardRestaurant from '../../components/CardRestaurant';
+import Bottombar from '../../components/Bottombar';
 
 function FeedPage(props) {
 
@@ -84,6 +85,8 @@ function FeedPage(props) {
         </S.Restaurants>
 
       </S.Container>
+
+      <Bottombar page='home'/>
 
     </S.FeedPageWrapper>
   )

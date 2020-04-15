@@ -8,6 +8,7 @@ import * as S from './styles'
 import Appbar from '../../components/Appbar';
 import CardHistory from '../../components/CardHistory';
 import { Typography } from '@material-ui/core';
+import Bottombar from '../../components/Bottombar';
 
 function ProfilePage(props) {
 
@@ -67,6 +68,9 @@ function ProfilePage(props) {
         }
 
       </S.Container>
+
+      <Bottombar page='profile' />
+
     </S.ProfilePageWrapper>
   )
 }
