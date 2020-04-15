@@ -46,7 +46,7 @@ function CardFood(props) {
           >
             adicionar
           </S.ButtonAddRemove>
-          <ConfirmationDialog/>
+          <ConfirmationDialog item={item}/>
         </>     
         :
         <S.ButtonAddRemove className="buttom" variant="outlined" color="primary" marginRed>

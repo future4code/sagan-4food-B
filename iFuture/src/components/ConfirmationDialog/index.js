@@ -8,7 +8,7 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, M
 
 function ConfirmationDialog(props) {
 
-    const { open, setOpen } = props
+    const { open, setOpen, item } = props
 
     const [quantity, setQuantity] = useState(0)
 
@@ -16,11 +16,9 @@ function ConfirmationDialog(props) {
         setQuantity(e.target.value)
     }
 
-    // console.log(quantity)
-
     const addQuantityAndClose = () => {
         // adicionar a quantidade ao respectivo produtos
-            // ex: setQuantityInProduct(quantity)
+            // ex: setQuantityInProduct(quantity, item.id)
 
         // e fecha
         setOpen(false);
