@@ -1,24 +1,19 @@
 import React from 'react';
-import styled from 'styled-components';
+
+import * as S from './styles'
 
 import Appbar from '../../components/Appbar';
-import Header from '../../components/CardsRestaurant/Header';
+import RestaurantHeader from '../../components/RestaurantHeader';
+import RestaurantDishes from '../../components/RestaurantDishes';
 
 import mock from './mock';
-import MainDishes from '../../components/CardsRestaurant/MainDishes';
-import Accompaniments from '../../components/CardsRestaurant/Accompaniments';
-
-const RestaurantWrapper = styled.div`
-  background: white;
-  padding: 0 16px;
-`
 
 function RestaurantPage() {
   return (
     <div>
       <Appbar page='restaurant' />
-      <RestaurantWrapper>
-        <Header
+      <S.RestaurantWrapper>
+        <RestaurantHeader
           img={mock.logoUrl}
           name={mock.name}
           category={mock.category}
@@ -26,9 +21,10 @@ function RestaurantPage() {
           shipping={mock.shipping}
           address={mock.address}
         />
-        <MainDishes data={mock.products} />
-        <Accompaniments data={mock.products}/>
-      </RestaurantWrapper>
+        <RestaurantDishes 
+          data={mock.products}
+        />
+      </S.RestaurantWrapper>
     </div>
   )
 }
