@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { setDialog } from '../../actions/confirmationDialog'
 
 import * as S from './styles'
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, MenuItem } from '@material-ui/core';
+import { Dialog, DialogActions, TextField, MenuItem } from '@material-ui/core';
 
 function ConfirmationDialog(props) {
 
@@ -18,23 +18,27 @@ function ConfirmationDialog(props) {
 
     const addQuantityAndClose = () => {
         // adicionar a quantidade ao respectivo produtos
-            // ex: setQuantityInProduct(quantity, item.id)
+        // ex: setQuantityInProduct(quantity, item.id)
 
         // e fecha
         setOpen(false);
     }
 
     return (
-        <Dialog 
+        <Dialog
             disableBackdropClick disableEscapeKeyDown open={open} onClose={addQuantityAndClose}
             BackdropProps={{
                 style: {
-                //   backgroundColor: 'transparent',
-                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                    backgroundColor: 'black',
+                    opacity: 0.1,
                 },
-              }}
-              
-            >
+            }}
+            PaperProps={{
+                style: {
+                    boxShadow: "none",
+                },
+            }}
+        >
             <S.DialogTitleStyled>
                 Selecione a quantidade desejada
             </S.DialogTitleStyled>
@@ -48,6 +52,7 @@ function ConfirmationDialog(props) {
                     value={quantity}
                     onChange={selectOption}
                 >
+                    <MenuItem value='0'>0</MenuItem>
                     {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(number => (
                         <MenuItem value={number}>{number}</MenuItem>
                     ))}
