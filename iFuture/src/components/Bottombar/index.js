@@ -1,5 +1,5 @@
 import React from 'react'
-import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
+import { BottomNavigationAction } from '@material-ui/core';
 import { DivWrapper } from './styles'
 
 function Bottombar(props) {

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { setDialog } from '../../actions/confirmationDialog'
 
 import * as S from './styles'
-import { Dialog, DialogActions, TextField, MenuItem } from '@material-ui/core';
+import { Dialog, DialogActions, MenuItem } from '@material-ui/core';
 
 function ConfirmationDialog(props) {
 
