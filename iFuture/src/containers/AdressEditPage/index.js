@@ -36,7 +36,6 @@ function AdressEditPage(props) {
           value={logradouro}
           onChange={handleInputs}
           placeholder="Rua / Av."
-          margin="normal"
           variant="outlined"
           InputLabelProps={{
             shrink: true,
