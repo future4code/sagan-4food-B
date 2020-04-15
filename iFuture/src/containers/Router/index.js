@@ -16,7 +16,7 @@ import SearchPage from "../SearchPage";
 export const routes = {
   login: '/', // refatorado
   signup: '/signup', // refatorado
-  adressRegister: '/adressRegister',
+  adressRegister: '/adressRegister', // refatorado
   feed: '/feed', // refatorado
   search: '/search', // refatorado
   restaurant: '/restaurant',
