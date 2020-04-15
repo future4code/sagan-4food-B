@@ -22,9 +22,8 @@ function AdressRegisterPage() {
   const { logradouro, numero, complemento, bairro, cidade, estado } = inputs;
 
   return (
-    <div>
-      <Appbar page='adressRegister' />
       <S.AndressRegisterWrapper>
+      <Appbar page='adressRegister' />
         <S.Title>Meu Endreço</S.Title>
         <S.Form>
           <S.Input
@@ -41,7 +40,7 @@ function AdressRegisterPage() {
             InputLabelProps={{
               shrink: true,
             }}
-            inputProps={{ pattern: "[a-zA-Z.-áéíóú 0-9]" }} 
+            inputProps={{ pattern: "[a-zA-Zà-úÀ-ú ]" }} 
           />
           <S.Input
             name="numero"
@@ -72,7 +71,7 @@ function AdressRegisterPage() {
             InputLabelProps={{
               shrink: true,
             }}
-            inputProps={{ pattern: "[a-zA-Z.-áéíóú 0-9]" }}
+            inputProps={{ pattern: "[a-zA-Zà-úÀ-ú ]" }}
           />
           <S.Input
             name="bairro"
@@ -88,7 +87,7 @@ function AdressRegisterPage() {
             InputLabelProps={{
               shrink: true,
             }}
-            inputProps={{ pattern: "[a-zA-Z.-áéíóú 0-9]" }}
+            inputProps={{ pattern: "[a-zA-Zà-úÀ-ú ]" }}
           />
           <S.Input
             name="cidade"
@@ -104,7 +103,7 @@ function AdressRegisterPage() {
             InputLabelProps={{
               shrink: true,
             }}
-            inputProps={{ pattern: "[a-zA-Z.-áéíóú 0-9]" }}
+            inputProps={{ pattern: "[a-zA-Zà-úÀ-ú ]" }}
           />
           <S.Input
             name="estado"
@@ -120,12 +119,11 @@ function AdressRegisterPage() {
             InputLabelProps={{
               shrink: true,
             }}
-            inputProps={{ pattern: "[a-zA-Z.-áéíóú 0-9]" }}
+            inputProps={{ pattern: "[a-zA-Zà-úÀ-ú ]" }}
           />
           <S.ButtonSubmit type="submit">Salvar</S.ButtonSubmit>
         </S.Form>
       </S.AndressRegisterWrapper>
-    </div>
   )
 }
 
