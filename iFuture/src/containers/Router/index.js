@@ -19,8 +19,8 @@ export const routes = {
   adressRegister: '/adressRegister', // refatorado
   feed: '/feed', // refatorado
   search: '/search', // refatorado
-  restaurant: '/restaurant',
-  profile: '/profile',
+  restaurant: '/restaurant', // refatorado
+  profile: '/profile', // refatorado
   profileEdit: '/profileEdit',
   adressEdit: '/adressEdit',
   cart: '/cart'
