@@ -4,47 +4,22 @@ import Appbar from '../../components/Appbar';
 import OrderCard from '../../components/orderCard/index'
 
 function CartPage() {
-  const [checkBox, setcheckBox] = useState({money: true, card: true})
+  const [payment, setpayment] = useState({paymentMethod: ''})
   const [order, setOrder] = useState({orders: [1]})
-  const checkBoxImage = <img src={require('../../assets/radiobutton-unchecked.png')}/>
 
-  let clickedCheckBoxMoney = checkBox.money?  
-  <S.CheckboxWrapper onClick={toggleCheckBoxMoney}>
-    {checkBoxImage}
-  </S.CheckboxWrapper> 
-  : 
-  <S. ClickedCheckboxWrapper onClick={toggleCheckBoxMoney}>
-    {checkBoxImage}
-  </S. ClickedCheckboxWrapper>
-                                        
-  let clickedCheckBoxCard = checkBox.card?  
-  <S.CheckboxWrapper onClick={toggleCheckBoxCard}>
-    {checkBoxImage}
-  </S.CheckboxWrapper> 
-  : 
-  <S. ClickedCheckboxWrapper onClick={toggleCheckBoxCard}>
-    {checkBoxImage}
-  </S. ClickedCheckboxWrapper>
+  function savePaymentMethod(e){
+    setpayment({paymentMethod: e.target.id })
+  }
 
-  function toggleCheckBoxMoney(){
-    if(checkBox.money){
-      setcheckBox({money: false, card: true})
-    }
-    else{
-      setcheckBox({money: true, card: true})
-    }
+  function teste(e){
+    e.preventDefault()
   }
-  function toggleCheckBoxCard(){
-    if(checkBox.card){
-      setcheckBox({money: true, card: false})
-    }
-    else{
-      setcheckBox({money: true, card: true})
-    }
-  }
+
   let myOrders = order.orders.length === 0?
   <S.EmptyCartWrpper>
+    <S.EmptyCartTypographyWrpper>
     Carrinho Vazio
+    </S.EmptyCartTypographyWrpper>
   </S.EmptyCartWrpper>
   :
   <S.OrderInfoWrapper>
@@ -61,7 +36,9 @@ function CartPage() {
   </S.OrderInfoWrapper>
 
   return (
-    <S. ContentWrapper height={order.orders.length === 0? '640 px' : '781 px'}>
+    <S. ContentWrapper 
+    height={order.orders.length === 0? '640 px' : '781 px'}>
+      <Appbar page='cart'/>
       <S.AdressBoxWrapper>
         <S.AdressTitleWrapper>
           Endereço da entrega
@@ -86,26 +63,44 @@ function CartPage() {
         Forma de pagamento
       </S.PayementTitleWrapper>
       <S.DivisionBar/>
-      <S.PayementOptionBoxWrapper>
-        {clickedCheckBoxMoney}
-        <S.PayementOptionWrapper>
-          Dinheiro
-        </S.PayementOptionWrapper>
-      </S.PayementOptionBoxWrapper>
-      <S.PayementOptionBoxWrapper>
-        {clickedCheckBoxCard}
-        <S.PayementOptionWrapper>
-          Cartão de crédito
-        </S.PayementOptionWrapper>
-      </S.PayementOptionBoxWrapper>
-      <S.ConfirmButtonWrapper 
-      marginTop={order.orders.length === 0? '145px' : '19px'}
-      color={order.orders.length === 0? 'rgba(232, 34, 46, 0.5)' : '#e8222e'}
-      >
-        <S.ButtonTitleWrapper>
-          Confirmar
-        </S.ButtonTitleWrapper>
-      </S.ConfirmButtonWrapper>
+      <S.FormWrapper onSubmit={teste}>
+        <S.PayementOptionBoxWrapper>
+          <S.RadioButtonWrapper 
+          name="payementOption" 
+          type="radio"
+          value={payment.paymentMethod || ''}
+          id='money'
+          required
+          onClick={savePaymentMethod}
+          disabled={order.orders.length === 0? true : false}
+          />
+          <S.PayementOptionWrapper>
+            Dinheiro
+          </S.PayementOptionWrapper>
+        </S.PayementOptionBoxWrapper>
+        <S.PayementOptionBoxWrapper>
+          <S.RadioButtonWrapper 
+          name="payementOption" 
+          type="radio"
+          value={payment.paymentMethod || ''}
+          id='creditcard'
+          onClick={savePaymentMethod}
+          disabled={order.orders.length === 0? true : false}
+          />
+          <S.PayementOptionWrapper>
+            Cartão de crédito
+          </S.PayementOptionWrapper>
+        </S.PayementOptionBoxWrapper>
+        <S.ConfirmButtonWrapper 
+        marginTop={order.orders.length === 0? '145px' : '19px'}
+        color={order.orders.length === 0? 'rgba(232, 34, 46, 0.5)' : '#e8222e'}
+        type='onsubmit'
+        >
+          <S.ButtonTitleWrapper>
+            Confirmar
+          </S.ButtonTitleWrapper>
+        </S.ConfirmButtonWrapper>
+      </S.FormWrapper>
     </S. ContentWrapper>
   )
 }

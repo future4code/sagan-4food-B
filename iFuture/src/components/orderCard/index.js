@@ -3,11 +3,8 @@ import * as S from '../orderCard/styles'
 
 function OrderCard(){
     return(
-        <div>
             <S.OrderCardWrapper>
-                <S.ImageWrapper>
-                    <img src={require('../../assets/mao-santa-burguer-1531851949973-v-2-900-x-506.png')}/>
-                </S.ImageWrapper>
+                <S.ImageWrapper src={require('../../assets/mao-santa-burguer-1531851949973-v-2-900-x-506.png')}/>
                 <S.OrderInfosWrapper>
                     <S.NameandQuantityWrapper>
                         <S.DishNameWrapper>
@@ -34,7 +31,6 @@ function OrderCard(){
                     </S.PriceAndDeleteWrapper>
                 </S.OrderInfosWrapper>
             </S.OrderCardWrapper>
-        </div>
     )
 }
  export default OrderCard;

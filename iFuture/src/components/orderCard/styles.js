@@ -1,27 +1,28 @@
 import styled from 'styled-components'
 
 export const OrderCardWrapper = styled.div`
-  width: 328px;
+  width: 100%;
   height: 112px;
   border-radius: 8px;
   border: solid 1px #b8b8b8;
-  margin: 8px 16px 8px 16px
+  margin: 8px 0 8px 0
   display: flex;
 `
-export const ImageWrapper = styled.div`
-  width: 96px;
+export const ImageWrapper = styled.img`
+  width: 30%;
   height: 112px;
   object-fit: contain;
 `
 export const OrderInfosWrapper = styled.div`
-    display: flex;
-    flex-direction: column
+  width: 70%    
+  display: flex;
+  flex-direction: column
 `
 export const NameandQuantityWrapper = styled.div`
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding-right: 0
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-right: 0
 `
 export const DishNameWrapper = styled.div`
   width: 167px;
@@ -58,10 +59,10 @@ export const DishDescriptionWrapper = styled.div`
   margin: 0 16px 4px 16px
 `
 export const PriceAndDeleteWrapper = styled.div`
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding-right: 0
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-right: 0
 `
 export const PriceWrapper = styled.div`
   width: 118px;
