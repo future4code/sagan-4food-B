@@ -1,26 +1,26 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Appbar from '../../components/Appbar';
 import Textfield from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import  Typography  from '@material-ui/core/Typography';
-import {DivWrapper, FormWrapper, TitleWrapper} from './SignupPageStyle'
-import Bottombar from '../../components/Bottombar';
+import Typography from '@material-ui/core/Typography';
+import { DivWrapper, FormWrapper, TitleWrapper } from './SignupPageStyle'
+
 
 const createNewUser = [
 
   {
     name: "name",
     label: "Nome",
-    placeholder:"Nome e Sobrenome",
+    placeholder: "Nome e Sobrenome",
     type: "text",
     required: true,
-    pattern: "[a-zA-Z]{3,}",
+    pattern: "[a-zA-Zà-úÀ-ú ]{3,}",
     title: "Nome completo do Usuário"
   },
   {
     name: 'email',
     label: "Email",
-    placeholder:"email@email.com",
+    placeholder: "email@email.com",
     type: "email",
     required: true,
     title: "Digite um email Válido"
@@ -28,17 +28,17 @@ const createNewUser = [
   {
     name: 'cpf',
     label: "CPF",
-    placeholder:"000.000.000-00",
+    placeholder: "000.000.000-00",
     type: "text",
     required: true,
-    pattern: "/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/",
+    pattern: "[0-9]{3,}[.]{1,}[0-9]{3,}[.]{1,}[0-9]{3,}[-]{1,}[0-9]{2,}",
     title: "Digite seu CPF sem pontos e espaços."
   },
   {
     name: 'password',
     label: "Senha",
     type: "password",
-    placeholder:"Mínimo 6 caracteres",
+    placeholder: "Mínimo 6 caracteres",
     required: true,
     pattern: "{6,}",
     title: "Sua senha deve conter no minimo 6 caracteres"
@@ -47,7 +47,7 @@ const createNewUser = [
     name: 'confirm',
     label: "Confirmar",
     type: "password",
-    placeholder:"Confirme a senha anterior",
+    placeholder: "Confirme a senha anterior",
     required: true,
     pattern: "{6,12}",
     title: "confirmação da senha"
@@ -64,29 +64,46 @@ class SignupPage extends Component {
     }
   }
 
+  handleInput = event => {
+    const { name, value } = event.target;
+    this.setState({
+      form: {
+        ...this.state.form,
+        [name]: value
+      }
+    })
+  }
+
+  handleSubmission = event => {
+    event.preventDefault();
+    console.log(this.state.form)
+  }
 
   render() {
     return (
       <DivWrapper>
-        <Appbar page='signup'/>
+        <Appbar page='signup' />
         {logo}
         <TitleWrapper>
-        <Typography variant='h5'>Cadastrar</Typography>
+          <Typography variant='h5'>Cadastrar</Typography>
         </TitleWrapper>
-        <FormWrapper>
+        <FormWrapper onSubmit={this.handleSubmission}>
           {createNewUser.map(field => {
-            return(
-                <Textfield
+            return (
+              <Textfield
+                key={field.name}
                 variant="outlined"
                 margin="normal"
                 label={field.label}
                 name={field.name}
                 placeholder={field.placeholder}
+                value={this.state.form[field.name]}
+                onChange={this.handleInput}
                 type={field.type}
                 inputProps={{ pattern: field.pattern }}
                 required={field.required}
                 title={field.title}
-                />
+              />
             )
           })}
           <Button type='submit' variant='contained' color='primary'>Criar</Button>
