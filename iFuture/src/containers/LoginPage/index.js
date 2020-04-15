@@ -28,9 +28,11 @@ function LoginPage(props) {
       <S.LogoWrapper>
         <img src={require('../../assets/logo-future-eats-invert.png')}/>
       </S.LogoWrapper>
-      <S.TitleWrapper>
+      
+      <S.Text>
         Entrar
-      </S.TitleWrapper>
+      </S.Text>
+
       <form onSubmit={sendUserInfo}>
         <S.InputWrapper
         name='email'
@@ -42,7 +44,11 @@ function LoginPage(props) {
         onChange={getUserInfo}
         required
         inputProps={{ pattern: '[^@]+@[^\.]+\..+' }}
+        InputLabelProps={{
+          shrink: true,
+        }}
         />
+
         <S.InputWrapper
         name='password'
         variant="outlined"
@@ -52,7 +58,10 @@ function LoginPage(props) {
         value={userInfo.password || ''}
         onChange={getUserInfo}
         required
-        inputProps={{ pattern: '^.{6,}' }}
+        // inputProps={{ pattern: '^.{6,}' }}
+        InputLabelProps={{
+          shrink: true,
+        }}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
@@ -60,18 +69,24 @@ function LoginPage(props) {
               onClick={()=>setHidenPassword(!hidenPassword)}
               src={hidenPassword? require('../../assets/olho.png') : require('../../assets/senha.png')}/>
             </InputAdornment>
-          )
+          ),
+          pattern: '^.{6,}'
         }}
         />
+
         <S.ButtonWrapper
         type='onSubmit'
         variant="contained" 
-        color="primary">
-          <S.ButtonTextWrapper>Entrar</S.ButtonTextWrapper>
+        color="primary"
+        >
+            Entrar
         </S.ButtonWrapper>
+
       </form>
       <S.SignupDirectionerWrapper>
-        <Typography onClick={goToSignUp}>Não possui cadastro? Clique aqui</Typography>
+        <S.Text>
+          <span>Não possui cadastro? <span onClick={goToSignUp}>Clique aqui</span></span>
+        </S.Text>
       </S.SignupDirectionerWrapper>
     </S.PageWrapper>
   )
