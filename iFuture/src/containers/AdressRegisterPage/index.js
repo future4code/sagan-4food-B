@@ -35,7 +35,6 @@ function AdressRegisterPage() {
             value={logradouro}
             onChange={handleInputs}
             placeholder="Rua / Av."
-            margin="normal"
             variant="outlined"
             InputLabelProps={{
               shrink: true,
@@ -51,7 +50,6 @@ function AdressRegisterPage() {
             value={numero}
             onChange={handleInputs}
             placeholder="Número"
-            margin="normal"
             variant="outlined"
             InputLabelProps={{
               shrink: true,
@@ -66,7 +64,6 @@ function AdressRegisterPage() {
             value={complemento}
             onChange={handleInputs}
             placeholder="Apto./Bloco"
-            margin="normal"
             variant="outlined"
             InputLabelProps={{
               shrink: true,
@@ -82,7 +79,6 @@ function AdressRegisterPage() {
             value={bairro}
             onChange={handleInputs}
             placeholder="Bairro"
-            margin="normal"
             variant="outlined"
             InputLabelProps={{
               shrink: true,
@@ -98,7 +94,6 @@ function AdressRegisterPage() {
             value={cidade}
             onChange={handleInputs}
             placeholder="Cidade"
-            margin="normal"
             variant="outlined"
             InputLabelProps={{
               shrink: true,
@@ -114,7 +109,6 @@ function AdressRegisterPage() {
             value={estado}
             onChange={handleInputs}
             placeholder="Estado"
-            margin="normal"
             variant="outlined"
             InputLabelProps={{
               shrink: true,

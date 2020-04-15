@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {push} from "connected-react-router"
 import {routes} from '../Router/index'
 import * as S from './styles';
-import { Typography, InputAdornment } from '@material-ui/core';
+import { InputAdornment } from '@material-ui/core';
 
 function LoginPage(props) {
 
@@ -26,23 +26,28 @@ function LoginPage(props) {
   return (
     <S.PageWrapper>
       <S.LogoWrapper>
-        <img src={require('../../assets/logo-future-eats-invert.png')}/>
+        <img src={require('../../assets/logo-future-eats-invert.png')} alt='Logo'/>
       </S.LogoWrapper>
-      <S.TitleWrapper>
+      
+      <S.Text>
         Entrar
-      </S.TitleWrapper>
+      </S.Text>
+
       <form onSubmit={sendUserInfo}>
         <S.InputWrapper
         name='email'
         variant="outlined"
         label="E-mail"
         placeholder='email@email.com'
-        type='text'
+        type='email'
         value={userInfo.email || ''}
         onChange={getUserInfo}
         required
-        inputProps={{ pattern: '[^@]+@[^\.]+\..+' }}
+        InputLabelProps={{
+          shrink: true,
+        }}
         />
+
         <S.InputWrapper
         name='password'
         variant="outlined"
@@ -52,7 +57,10 @@ function LoginPage(props) {
         value={userInfo.password || ''}
         onChange={getUserInfo}
         required
-        inputProps={{ pattern: '^.{6,}' }}
+        // inputProps={{ pattern: '^.{6,}' }}
+        InputLabelProps={{
+          shrink: true,
+        }}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
@@ -60,19 +68,24 @@ function LoginPage(props) {
               onClick={()=>setHidenPassword(!hidenPassword)}
               src={hidenPassword? require('../../assets/olho.png') : require('../../assets/senha.png')}/>
             </InputAdornment>
-          )
+          ),
+          pattern: '^.{6,}'
         }}
         />
+
         <S.ButtonWrapper
         type='onSubmit'
         variant="contained" 
-        color="primary">
-          <S.ButtonTextWrapper>Entrar</S.ButtonTextWrapper>
+        color="primary"
+        >
+            Entrar
         </S.ButtonWrapper>
+
       </form>
-      <S.SignupDirectionerWrapper>
-        <Typography onClick={goToSignUp}>Não possui cadastro? Clique aqui</Typography>
-      </S.SignupDirectionerWrapper>
+
+        <S.Text>
+          <span>Não possui cadastro? <span onClick={goToSignUp}>Clique aqui</span></span>
+        </S.Text>
     </S.PageWrapper>
   )
 }

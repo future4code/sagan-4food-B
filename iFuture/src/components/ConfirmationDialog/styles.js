@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { DialogTitle, DialogContent, Button } from '@material-ui/core';
+import { DialogTitle, DialogContent, Button, TextField } from '@material-ui/core';
 
 export const DialogTitleStyled = styled(DialogTitle)`
     font-size: 16px;
@@ -18,4 +18,12 @@ export const ButtonStyled = styled(Button)`
     color: #4f81a8;
 `
 
+export const Input = styled(TextField)`
+    position: relative;
+`
 
+export const Img = styled.img`
+    position: absolute;
+    right: 16px;
+    top: 16px;
+`

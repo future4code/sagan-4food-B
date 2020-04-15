@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import Appbar from '../../components/Appbar';
-import Textfield from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
-import Typography from '@material-ui/core/Typography';
-import { DivWrapper, FormWrapper, TitleWrapper } from './SignupPageStyle'
 
+import * as S from './styles'
+
+import Appbar from '../../components/Appbar';
 
 const createNewUser = [
-
   {
     name: "name",
     label: "Nome",
@@ -81,16 +78,24 @@ class SignupPage extends Component {
 
   render() {
     return (
-      <DivWrapper>
+      <S.DivWrapper>
         <Appbar page='signup' />
+        
+        <S.Container>
+
         {logo}
-        <TitleWrapper>
-          <Typography variant='h5'>Cadastrar</Typography>
-        </TitleWrapper>
-        <FormWrapper onSubmit={this.handleSubmission}>
+
+        <S.TitleWrapper>
+
+          <S.Title>
+            Cadastrar
+          </S.Title>
+
+        </S.TitleWrapper>
+        <S.FormWrapper onSubmit={this.handleSubmission}>
           {createNewUser.map(field => {
             return (
-              <Textfield
+              <S.Input
                 key={field.name}
                 variant="outlined"
                 margin="normal"
@@ -103,12 +108,17 @@ class SignupPage extends Component {
                 inputProps={{ pattern: field.pattern }}
                 required={field.required}
                 title={field.title}
+                InputLabelProps={{
+                  shrink: true,
+                }}
               />
             )
           })}
-          <Button type='submit' variant='contained' color='primary'>Criar</Button>
-        </FormWrapper>
-      </DivWrapper>
+          <S.ButtonStyled type='submit' variant='contained' color='primary'>Criar</S.ButtonStyled>
+        </S.FormWrapper>
+        
+        </S.Container>
+      </S.DivWrapper>
     )
   }
 }

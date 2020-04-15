@@ -1,11 +1,14 @@
 import React, {useState} from 'react';
 import * as S from '../CartPage/styles'
 import Appbar from '../../components/Appbar';
-import OrderCard from '../../components/orderCard/index'
+
+import restaurant from '../RestaurantPage/mock'
+import CardFood from '../../components/CardFood';
+import Bottombar from '../../components/Bottombar';
 
 function CartPage() {
+  // const restaurant = { products: [] }
   const [payment, setpayment] = useState({paymentMethod: ''})
-  const [order, setOrder] = useState({orders: [1]})
 
   function savePaymentMethod(e){
     setpayment({paymentMethod: e.target.id })
@@ -15,7 +18,7 @@ function CartPage() {
     e.preventDefault()
   }
 
-  let myOrders = order.orders.length === 0?
+  let myOrders = restaurant.products.length === 0?
   <S.EmptyCartWrpper>
     <S.EmptyCartTypographyWrpper>
     Carrinho Vazio
@@ -32,37 +35,54 @@ function CartPage() {
     <S.AdressAndDeliveryTimeWrapper>
       30 - 40 min
     </S.AdressAndDeliveryTimeWrapper>
-    <OrderCard/>
+
+    {restaurant.products.map(item => (
+      <CardFood item={item}/>
+    ))}
+
   </S.OrderInfoWrapper>
 
   return (
-    <S. ContentWrapper 
-    height={order.orders.length === 0? '640 px' : '781 px'}>
+    <S.ContentWrapper>
       <Appbar page='cart'/>
+      
+      <S.Container>
       <S.AdressBoxWrapper>
+
         <S.AdressTitleWrapper>
           Endereço da entrega
         </S.AdressTitleWrapper>
+        
         <S.AdressWrapper>
           Endereço
         </S.AdressWrapper>
+
       </S.AdressBoxWrapper>
+
       {myOrders}
+
       <S.FareWrapper>
         Frete R$0,00
       </S.FareWrapper>
+
       <S.PriceBoxWrapper>
+
         <S.PriceTitleWrapper>
           SUBTOTAL
         </S.PriceTitleWrapper>
+
         <S.PriceWrapper>
           R$0,00
         </S.PriceWrapper>
+
       </S.PriceBoxWrapper>
+
       <S.PayementTitleWrapper>
         Forma de pagamento
       </S.PayementTitleWrapper>
+
       <S.DivisionBar/>
+
       <S.FormWrapper onSubmit={teste}>
         <S.PayementOptionBoxWrapper>
           <S.RadioButtonWrapper 
@@ -72,7 +92,7 @@ function CartPage() {
           id='money'
           required
           onClick={savePaymentMethod}
-          disabled={order.orders.length === 0? true : false}
+          disabled={restaurant.products.length === 0? true : false}
           />
           <S.PayementOptionWrapper>
             Dinheiro
@@ -85,15 +105,15 @@ function CartPage() {
           value={payment.paymentMethod || ''}
           id='creditcard'
           onClick={savePaymentMethod}
-          disabled={order.orders.length === 0? true : false}
+          disabled={restaurant.products.length === 0? true : false}
           />
           <S.PayementOptionWrapper>
             Cartão de crédito
           </S.PayementOptionWrapper>
         </S.PayementOptionBoxWrapper>
         <S.ConfirmButtonWrapper 
-        marginTop={order.orders.length === 0? '145px' : '19px'}
-        color={order.orders.length === 0? 'rgba(232, 34, 46, 0.5)' : '#e8222e'}
+        marginTop={restaurant.products.length === 0? '145px' : '19px'}
+        color={restaurant.products.length === 0? 'rgba(232, 34, 46, 0.5)' : '#e8222e'}
         type='onsubmit'
         >
           <S.ButtonTitleWrapper>
@@ -101,7 +121,11 @@ function CartPage() {
           </S.ButtonTitleWrapper>
         </S.ConfirmButtonWrapper>
       </S.FormWrapper>
-    </S. ContentWrapper>
+
+      </S.Container>
+
+      <Bottombar page='cart'/>
+    </S.ContentWrapper>
   )
 }
 

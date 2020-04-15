@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { setDialog } from '../../actions/confirmationDialog'
 
 import * as S from './styles'
-import { Dialog, DialogActions, TextField, MenuItem } from '@material-ui/core';
+import { Dialog, DialogActions, MenuItem } from '@material-ui/core';
 
 function ConfirmationDialog(props) {
 
@@ -45,18 +45,26 @@ function ConfirmationDialog(props) {
 
             <S.OptionsContent>
 
-                <TextField
+                <S.Input
                     select
                     fullWidth
                     variant='outlined'
                     value={quantity}
                     onChange={selectOption}
+                    // SelectProps={{
+                    //     background: "#000000 url('../../assets/back.svg') 95.5% 50% no-repeat" 
+                    //     // url('../imagens/bgs/seta.png') 95.5% 50% no-repeat
+                    // }}
+                    // IconComponent = {<div>oi</div>}
+                    SelectProps={{
+                        IconComponent: () => <S.Img src={require("../../assets/dropdown.svg")} alt='home' />,
+                      }}
                 >
                     <MenuItem value='0'>0</MenuItem>
                     {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(number => (
                         <MenuItem value={number}>{number}</MenuItem>
                     ))}
-                </TextField>
+                </S.Input>
 
             </S.OptionsContent>
 
