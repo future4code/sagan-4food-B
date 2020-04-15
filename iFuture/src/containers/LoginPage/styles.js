@@ -27,20 +27,10 @@ export const ButtonWrapper = styled(Button)`
     border-radius: 2px;
     margin: 16px 0;
     color: black;
-    font-weight: bold;
 `
 
-export const SignupDirectionerWrapper = styled(Typography)`
-    width: 70%;
-    height: 18px;
-    font-size: 16px;
-    letter-spacing: -0.4px;
-    text-align: center;
-    font-weight: bold;
-`
-export const ImgWrapper = styled.img`
-    /* margin: 16px 16px 16px 288px */
-`
+export const ImgWrapper = styled.img``
+
 export const PlaceHolderWrapper = styled(Typography)`
     height: 18px;
     font-size: 16px;

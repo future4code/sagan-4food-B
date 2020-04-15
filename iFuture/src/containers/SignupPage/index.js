@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import { Button, Typography, TextField } from '@material-ui/core'
 import * as S from './styles'
 
 import Appbar from '../../components/Appbar';
@@ -109,6 +108,9 @@ class SignupPage extends Component {
                 inputProps={{ pattern: field.pattern }}
                 required={field.required}
                 title={field.title}
+                InputLabelProps={{
+                  shrink: true,
+                }}
               />
             )
           })}

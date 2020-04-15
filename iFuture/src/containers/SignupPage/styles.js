@@ -42,4 +42,5 @@ export const Input = styled(TextField)`
 export const ButtonStyled = styled(Button)`
     height: 42px;
     margin: 8px;
+    color: #000000;
 `

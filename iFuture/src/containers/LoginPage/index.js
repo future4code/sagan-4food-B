@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {push} from "connected-react-router"
 import {routes} from '../Router/index'
 import * as S from './styles';
-import { Typography, InputAdornment } from '@material-ui/core';
+import { InputAdornment } from '@material-ui/core';
 
 function LoginPage(props) {
 
@@ -26,7 +26,7 @@ function LoginPage(props) {
   return (
     <S.PageWrapper>
       <S.LogoWrapper>
-        <img src={require('../../assets/logo-future-eats-invert.png')}/>
+        <img src={require('../../assets/logo-future-eats-invert.png')} alt='Logo'/>
       </S.LogoWrapper>
       
       <S.Text>
@@ -39,11 +39,10 @@ function LoginPage(props) {
         variant="outlined"
         label="E-mail"
         placeholder='email@email.com'
-        type='text'
+        type='email'
         value={userInfo.email || ''}
         onChange={getUserInfo}
         required
-        inputProps={{ pattern: '[^@]+@[^\.]+\..+' }}
         InputLabelProps={{
           shrink: true,
         }}
@@ -83,11 +82,10 @@ function LoginPage(props) {
         </S.ButtonWrapper>
 
       </form>
-      <S.SignupDirectionerWrapper>
+
         <S.Text>
           <span>Não possui cadastro? <span onClick={goToSignUp}>Clique aqui</span></span>
         </S.Text>
-      </S.SignupDirectionerWrapper>
     </S.PageWrapper>
   )
 }

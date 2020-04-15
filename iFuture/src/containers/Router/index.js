@@ -14,11 +14,11 @@ import RestaurantPage from "../RestaurantPage";
 import SearchPage from "../SearchPage";
 
 export const routes = {
-  login: '/',
-  signup: '/signup',
+  login: '/', // refatorado
+  signup: '/signup', // refatorado
   adressRegister: '/adressRegister',
-  feed: '/feed',
-  search: '/search',
+  feed: '/feed', // refatorado
+  search: '/search', // refatorado
   restaurant: '/restaurant',
   profile: '/profile',
   profileEdit: '/profileEdit',
