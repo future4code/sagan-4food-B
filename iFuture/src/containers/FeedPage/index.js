@@ -83,7 +83,10 @@ function FeedPage(props) {
 
         <S.Restaurants>
           {restaurantsAppears.map(restaurant => (
-            <CardRestaurant key={restaurant.id} restaurant={restaurant} />
+            <CardRestaurant 
+            key={restaurant.id} 
+            restaurant={restaurant}
+            />
           ))}
         </S.Restaurants>
 

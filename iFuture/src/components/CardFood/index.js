@@ -32,12 +32,15 @@ function CardFood(props) {
         <div className="bottomCard">
           <Typography className="price">
             {/* Precisamos colocar os centavos dos valores. */}
-            R$ {Number.parseFloat(item.price).toFixed(2).replace(".", ",")}
+            {/* R$ {item.price.includes(',')
+            ? item.price
+            : `${item.price},00`
+            } */}
           </Typography>
         </div>
       </S.Content>
 
-      {item.quantity !== 0
+      {/* {item.quantity !== 0
         ?
         <>
           <S.ButtonAddRemove 
@@ -52,12 +55,12 @@ function CardFood(props) {
         <S.ButtonAddRemove className="buttom" variant="outlined" color="primary" marginRed>
           remover
         </S.ButtonAddRemove>
-      }
+      } */}
 
-      {item.quantity !== 0 &&
+      {/* {item.quantity !== 0 &&
         <S.Count color="default">
           {item.quantity}
-        </S.Count>}
+        </S.Count>} */}
 
     </S.CardWrapper>
   )

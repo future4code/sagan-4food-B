@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { baseUrl, getToken } from '../utils/constants'
-// import { push } from 'connected-react-router'
-// import { routes } from '../containers/Router'
+import { push } from 'connected-react-router'
+import { routes } from '../containers/Router'
 
 export const setRestaurants = restaurantsList => ({
   type: 'SET_RESTAURANTS',
@@ -21,6 +21,29 @@ export const getRestaurants = () => async (dispatch) => {
       dispatch(setRestaurants(restaurantsList))
   } catch (error) {
       console.error(error.message)
-      alert("Não foi possível acessar os dados do usuário.")
+      alert("Não foi possível acessar a lista de restaurantes")
   }
 }
+
+export const setRestaurantDetails = (restaurantDetails) => ({
+    type: 'SET_RESTAURANT_DETAILS',
+    payload: {
+        restaurantDetails
+    }
+})
+
+export const getRestaurantDetail = (restaurantId) => async (dispatch) => {
+    try {
+        const response = await axios.get(`${baseUrl}/restaurants/${restaurantId}`, {
+            headers: {
+                auth: getToken()
+            }
+        })
+        const restaurantDetails = response.data.restaurant
+        dispatch(setRestaurantDetails(restaurantDetails))
+        dispatch(push(routes.restaurant))
+    } catch (error) {
+        console.error(error.message)
+        alert("Não foi possível acessar os detalhes do restaurante selecionado")
+    }
+  }

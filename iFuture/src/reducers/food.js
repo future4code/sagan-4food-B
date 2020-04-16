@@ -1,5 +1,7 @@
 const initialState = {
-  restaurantsList: []
+  restaurantsList: [],
+  restaurantDetails: {
+}
 }
 
 const food = (state = initialState, action) => {
@@ -11,7 +13,11 @@ const food = (state = initialState, action) => {
               ...state,
               restaurantsList: action.payload.restaurantsList
           }
-
+      case 'SET_RESTAURANT_DETAILS':
+        return {
+          ...state,
+          restaurantDetails: action.payload.restaurantDetails
+        }
       default:
           return state
   }

@@ -1,14 +1,15 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 
 import * as S from './styles'
 
 import Appbar from '../../components/Appbar';
 import RestaurantHeader from '../../components/RestaurantHeader';
 import RestaurantDishes from '../../components/RestaurantDishes';
+import { connect } from 'react-redux';
 
-import mock from './mock';
+function RestaurantPage(props) {
+  const {mock} = props
 
-function RestaurantPage() {
   return (
     <div>
       <Appbar page='restaurant' />
@@ -29,4 +30,8 @@ function RestaurantPage() {
   )
 }
 
-export default RestaurantPage;
+const mapStateToProps = state => ({
+  mock: state.food.restaurantDetails
+})
+
+export default connect(mapStateToProps)(RestaurantPage);
