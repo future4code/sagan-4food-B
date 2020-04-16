@@ -1,25 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import Appbar from '../../components/Appbar';
-import {getFullAdress} from '../../actions/user'
-import * as S from './styles';
 import { connect } from 'react-redux';
+import { push } from 'connected-react-router'
+import { routes } from '../Router'
+
+import * as S from './styles';
+
+import {getFullAdress, addAdress} from '../../actions/user'
+import Appbar from '../../components/Appbar';
 
 function AdressEditPage(props) {
-  const {adressInfo, getAdressInfo} = props
-  const { street, number, apartment, neighbourhood, city, state } = adressInfo
-
-  useEffect(()=> {
+  const {adressInfo, getAdressInfo, addAdress, goToProfile} = props
+  const { street, number, complement, neighbourhood, city, state } = adressInfo
+  
+  useEffect( () => {
     getAdressInfo()
   }, [])
+  
+  console.log(adressInfo)
 
   const [inputs, setInputs] = useState({
     logradouro: street,
     numero: number,
-    complemento: apartment,
+    complemento: complement,
     bairro: neighbourhood,
     cidade: city,
     estado: state
   })
+
+  
 
   const handleInputs = event => {
     const { name, value } = event.target;
@@ -28,11 +36,25 @@ function AdressEditPage(props) {
 
   const { logradouro, numero, complemento, bairro, cidade, estado } = inputs;
 
+  const changeAddress = async (event) => {
+    event.preventDefault()
+    const addAdressData = {
+      street: logradouro,
+      number: numero,
+      neighbourhood: bairro,
+      city: cidade,
+      state: estado,
+      complement: complemento
+    }
+    await addAdress(addAdressData)
+    goToProfile()
+  }
+
   return (
 
     <S.AndressEditWrapper color="white">
       <Appbar page='adressEdit' />
-      <S.Form>
+      <S.Form onSubmit={changeAddress}>
         <S.Input
           name="logradouro"
           required
@@ -46,7 +68,10 @@ function AdressEditPage(props) {
           InputLabelProps={{
             shrink: true,
           }}
-          inputProps={{ pattern: "[a-zA-Zà-úÀ-ú ]" }}
+          inputProps={{ 
+            pattern: "[a-zA-Zà-úÀ-ú0-9 ]*",
+            title: "O logradouro aceita letras e numeros" 
+          }}
         />
         <S.Input
           name="numero"
@@ -62,7 +87,10 @@ function AdressEditPage(props) {
           InputLabelProps={{
             shrink: true,
           }}
-          inputProps={{ pattern: "[0-9]" }}
+          inputProps={{ 
+            pattern: "[0-9]*",
+            title: "Aceita apenas números"
+          }}
         />
         <S.Input
           name="complemento"
@@ -77,7 +105,10 @@ function AdressEditPage(props) {
           InputLabelProps={{
             shrink: true,
           }}
-          inputProps={{ pattern: "[a-zA-Zà-úÀ-ú ]" }}
+          inputProps={{ 
+            pattern: "[a-zA-Zà-úÀ-ú0-9 ]*",
+            title: "Complemento aceita letras e números" 
+          }}
         />
         <S.Input
           name="bairro"
@@ -93,7 +124,10 @@ function AdressEditPage(props) {
           InputLabelProps={{
             shrink: true,
           }}
-          inputProps={{ pattern: "[a-zA-Zà-úÀ-ú ]" }}
+          inputProps={{ 
+            pattern: "[a-zA-Zà-úÀ-ú0-9 ]*",
+            title: "Bairro aceita letras e números" 
+          }}
         />
         <S.Input
           name="cidade"
@@ -109,7 +143,10 @@ function AdressEditPage(props) {
           InputLabelProps={{
             shrink: true,
           }}
-          inputProps={{ pattern: "[a-zA-Zà-úÀ-ú ]" }}
+          inputProps={{ 
+            pattern: "[a-zA-Zà-úÀ-ú0-9 ]*",
+            title: "Cidade aceita letras e números" 
+          }}
         />
         <S.Input
           name="estado"
@@ -125,7 +162,10 @@ function AdressEditPage(props) {
           InputLabelProps={{
             shrink: true,
           }}
-          inputProps={{ pattern: "[a-zA-Zà-úÀ-ú ]" }}
+          inputProps={{ 
+            pattern: "[A-Z ]{2,2}",
+            title: "Aceita apenas a sigla do Estado com duas letras maiúsculas" 
+          }}
         />
         <S.ButtonSubmit type="submit">Salvar</S.ButtonSubmit>
       </S.Form>
@@ -138,7 +178,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getAdressInfo: () => dispatch(getFullAdress())
+  getAdressInfo: () => dispatch(getFullAdress()),
+  addAdress: (addAdressData) => dispatch(addAdress(addAdressData)),
+  goToProfile: () => dispatch(push(routes.profile))
 })
 
 export default  connect(mapStateToProps, mapDispatchToProps)(AdressEditPage);
