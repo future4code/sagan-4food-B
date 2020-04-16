@@ -8,7 +8,9 @@ import { Dialog, DialogActions, MenuItem } from '@material-ui/core';
 
 function ConfirmationDialog(props) {
 
-    const { open, setOpen, item } = props
+    const { open, setOpen, 
+        // item 
+    } = props
 
     const [quantity, setQuantity] = useState(0)
 

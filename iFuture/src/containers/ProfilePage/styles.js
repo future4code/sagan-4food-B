@@ -7,7 +7,7 @@ export const ProfilePageWrapper = styled.div`
 `
 
 export const Container = styled.div`
-    margin: 16px;
+    margin: 16px 16px 64px;
     display: flex;
     flex-direction: column;
     position: relative;
