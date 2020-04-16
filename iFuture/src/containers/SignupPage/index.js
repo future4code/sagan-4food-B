@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-
+import {signup} from '../../actions/user'
 import * as S from './styles'
 
 import Appbar from '../../components/Appbar';
+import { connect } from 'react-redux';
 
 const createNewUser = [
   {
@@ -73,7 +74,13 @@ class SignupPage extends Component {
 
   handleSubmission = event => {
     event.preventDefault();
-    console.log(this.state.form)
+    const signupData = {
+      name: this.state.form.name,
+      email: this.state.form.email,
+      cpf: this.state.form.cpf,
+      password: this.state.form.password
+    }
+    this.props.signup(signupData)
   }
 
   render() {
@@ -122,4 +129,11 @@ class SignupPage extends Component {
     )
   }
 }
-export default SignupPage;
+
+const mapDispatchToProps = (dispatch) => {
+  return{
+    signup: (signupData) => dispatch(signup(signupData))
+  }
+} 
+
+export default connect(null, mapDispatchToProps)(SignupPage);
