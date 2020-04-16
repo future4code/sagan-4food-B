@@ -6,6 +6,8 @@ import * as S from './styles';
 import { InputAdornment } from '@material-ui/core';
 import Loading from '../../components/Loading';
 
+import { login } from '../../actions/user';
+
 function LoginPage(props) {
 
   const [userInfo, setUserInfo] = useState({})
@@ -22,6 +24,7 @@ function LoginPage(props) {
 
   function sendUserInfo(e){
     e.preventDefault()
+    props.login(userInfo)
   }
 
   return (
@@ -96,7 +99,8 @@ function LoginPage(props) {
 
 const mapDispatchToProps = (dispatch) => {
   return{
-    goToSignUp: () => dispatch(push(routes.signup))
+    goToSignUp: () => dispatch(push(routes.signup)),
+    login: (loginData) => dispatch(login(loginData))
   }
 }
 

@@ -34,6 +34,19 @@ export const addAdress = (addAdressData) => async (dispatch) => {
     }
 }
 
+export const login = loginData => async (dispatch) => {
+    try {
+        const response = await axios.post(`${baseUrl}/login`, loginData)
+        const token = response.data.token;
+        localStorage.setItem('token', token)
+
+        dispatch(push(routes.feed))
+    } catch(erro) {
+        console.error(erro.message)
+        alert("Não foi possivel fazer o login, tente novamente mais tarde!")
+    }
+}
+
 
 ///////////////////// AINDA NÃO INTEGRADO - depende de login (e demais)
 export const setProfile = (info) => ({
