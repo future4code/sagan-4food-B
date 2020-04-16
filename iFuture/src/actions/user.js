@@ -48,6 +48,7 @@ export const login = loginData => async (dispatch) => {
 }
 
 
+
 ///////////////////// AINDA NÃO INTEGRADO - depende de login (e demais)
 export const setProfile = (info) => ({
     type: 'SET_PROFILE',
