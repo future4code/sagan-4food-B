@@ -1,25 +1,34 @@
 import axios from 'axios'
 import { baseUrl, getToken } from '../utils/constants'
 import { push } from 'connected-react-router'
-import {routes} from '../containers/Router'
+import { routes } from '../containers/Router'
 
 export const signup = (signupData) => async (dispatch) => {
-    try{
-        const response = await axios.post(`${baseUrl}/signup`,signupData)
+    try {
+        const response = await axios.post(`${baseUrl}/signup`, signupData)
         const token = response.data.token
         localStorage.setItem("token", token)
         dispatch(push(routes.adressRegister))
-    }catch(error){
+    } catch (error) {
         console.error(error.message)
         alert("Não foi possivel criar seu cadastro, tente novamente mais tarde !")
     }
 }
 
 export const addAdress = (addAdressData) => async (dispatch) => {
-    console.log(addAdressData)
-    try{
-        
-    }catch(error){
+    try {
+        const response = await axios.put(`${baseUrl}/address`,
+            addAdressData,
+            {
+                headers: {
+                    auth: getToken()
+                }
+            })
+        const token = response.data.token
+        localStorage.clear()
+        localStorage.setItem("token",token)
+        dispatch(push(routes.feed))
+    } catch (error) {
         console.error(error.message)
         alert("Não foi possivel cadastrar esse endereço, tente novamente mais tarde!")
     }
