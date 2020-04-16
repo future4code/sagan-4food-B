@@ -4,6 +4,7 @@ import {push} from "connected-react-router"
 import {routes} from '../Router/index'
 import * as S from './styles';
 import { InputAdornment } from '@material-ui/core';
+import Loading from '../../components/Loading';
 
 function LoginPage(props) {
 
@@ -24,6 +25,8 @@ function LoginPage(props) {
   }
 
   return (
+    <>
+    <Loading/>
     <S.PageWrapper>
       <S.LogoWrapper>
         <img src={require('../../assets/logo-future-eats-invert.png')} alt='Logo'/>
@@ -87,6 +90,7 @@ function LoginPage(props) {
           <span>Não possui cadastro? <span onClick={goToSignUp}>Clique aqui</span></span>
         </S.Text>
     </S.PageWrapper>
+    </>
   )
 }
 

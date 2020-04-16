@@ -1,20 +1,22 @@
-import React from 'react'
-import styled from 'styled-components'
-
-export const PageWrapper = styled.div`
-  width: 100%;
-  height: 100vh;
-  background-color: #e8222e;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
+import React, {useState, useEffect} from 'react'
+import * as S from './styles'
 
 function Loading(){
+
+    const [open, setOpen] = useState(true)
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+          setOpen(false);
+        }, 2000);
+        return () => clearTimeout(timer);
+      }, []);
+
     return(
-        <PageWrapper>
-            <img src={require('../../assets/white-logo.png')}/>
-        </PageWrapper>
+        open &&
+        <S.PageWrapper>
+            <img src={require('../../assets/white-logo.png')} alt="logo"/>
+        </S.PageWrapper> 
     )
 }
 
