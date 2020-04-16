@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 import { routes } from '../../containers/Router'
-
-import { restaurants } from './constants'
 
 import * as S from './styles'
 import { TextField, InputAdornment } from '@material-ui/core'
@@ -11,10 +9,15 @@ import { TextField, InputAdornment } from '@material-ui/core'
 import Appbar from '../../components/Appbar';
 import CardRestaurant from '../../components/CardRestaurant';
 import Bottombar from '../../components/Bottombar';
+import { getRestaurants } from '../../actions/food';
 
 function FeedPage(props) {
 
-  const { goToSearch } = props
+  const { goToSearch, restaurants, getRestaurants } = props
+
+  useEffect(() => {
+    getRestaurants()
+  }, [])
 
   const [categoryClicked, setCategoryClicked] = useState(false)
   const [categorySelected, setCategorySelected] = useState('')
@@ -92,8 +95,13 @@ function FeedPage(props) {
   )
 }
 
+const mapStateToProps = state => ({
+  restaurants: state.food.restaurantsList
+});
+
 const mapDispatchToProps = dispatch => ({
-  goToSearch: () => dispatch(push(routes.search))
+  goToSearch: () => dispatch(push(routes.search)),
+  getRestaurants: () => dispatch(getRestaurants())
 })
 
-export default connect(null, mapDispatchToProps)(FeedPage);
+export default connect(mapStateToProps, mapDispatchToProps)(FeedPage);

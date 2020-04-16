@@ -3,7 +3,7 @@ import React from 'react'
 import * as S from './styles'
 import { CardContent } from '@material-ui/core'
 
-function CardRestaurant(props){
+function CardRestaurant(props) {
 
     const { restaurant } = props
 
@@ -15,7 +15,7 @@ function CardRestaurant(props){
     return (
         <S.CardRestaurantWrapper>
             <S.CardImage onClick={() => redirectRestaurant(restaurant.id)}>
-                <S.Image 
+                <S.Image
                     image={restaurant.logoUrl}
                     title={restaurant.name}
                 />
@@ -29,7 +29,8 @@ function CardRestaurant(props){
                         {restaurant.deliveryTime} - {restaurant.deliveryTime + 10} min
                     </S.RestaurantInfo>
                     <S.RestaurantInfo>
-                        Frete {restaurant.shipping.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                        Frete R$ {Number(restaurant.shipping).toFixed(2).replace(".", ",")}
+                        {/* Frete {restaurant.shipping.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} */}
                     </S.RestaurantInfo>
                 </S.InfoFooter>
             </CardContent>
