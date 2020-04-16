@@ -92,3 +92,18 @@ export const getFullAdress = () => async (dispatch) => {
         console.log(error.message)
     }
 }
+
+export const updateProfile = dataUpdateProfile => async dispatch => {
+    try {
+        const response = await axios.put(`${baseUrl}/profile`, dataUpdateProfile, {
+            headers: {
+                auth: getToken()
+            }
+        })
+
+        dispatch(setProfile(response.data.user))
+    } catch(error) {
+        console.error(error.message)
+        alert("Não foi possível atualizar os dados do usuário.")
+    }
+}

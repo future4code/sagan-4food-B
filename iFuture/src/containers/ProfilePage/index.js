@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 import { routes } from '../Router'
+import { getProfile } from '../../actions/user';
 
 import * as S from './styles'
 
@@ -11,7 +12,11 @@ import Bottombar from '../../components/Bottombar';
 
 function ProfilePage(props) {
 
-  const { user, goToProfileEdit, goToAdressEdit } = props
+  const { user, goToProfileEdit, goToAdressEdit, getProfile } = props
+
+  useEffect(() => {
+    getProfile()
+  }, [])
 
   const orderHistoryListMock = [
     {
@@ -95,6 +100,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   goToProfileEdit: () => dispatch(push(routes.profileEdit)),
   goToAdressEdit: () => dispatch(push(routes.adressEdit)),
+  getProfile: () => dispatch(getProfile())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);

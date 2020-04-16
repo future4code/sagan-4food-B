@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Appbar from '../../components/Appbar';
+import { getProfile, updateProfile } from '../../actions/user';
 
 
 import * as S from './styles'
+import { connect } from 'react-redux';
 
 const editUserProfile = [
   {
@@ -34,11 +36,19 @@ const editUserProfile = [
 ]
 
 class ProfileEditPage extends Component {
+
   constructor(props) {
     super(props)
     this.state = {
       form: {}
     }
+  }
+
+  componentDidMount = async () => {
+    await this.props.getProfile()
+    this.setState({
+      form: this.props.editUser
+    })
   }
 
   handleInput = event => {
@@ -53,7 +63,13 @@ class ProfileEditPage extends Component {
 
   handleSubmission = event => {
     event.preventDefault();
-    console.log(this.state.form)
+    const dataUpdate = {
+      name: this.state.form.name,
+      email: this.state.form.email,
+      cpf: this.state.form.cpf
+    }
+    
+    this.props.updateProfile(dataUpdate)
   }
   render() {
     return (
@@ -88,4 +104,14 @@ class ProfileEditPage extends Component {
     )
   }
 }
-export default ProfileEditPage;
+
+const mapStateToProps = state => ({
+  editUser: state.user.user
+})
+
+const mapDispatchToProps = dispatch => ({
+  getProfile: () => dispatch(getProfile()),
+  updateProfile: (dataUpdateProfile) => dispatch(updateProfile(dataUpdateProfile))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileEditPage);
