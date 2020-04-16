@@ -1,20 +1,22 @@
 import React from 'react'
 
+import {getRestaurantDetail} from '../../actions/food'
+
 import * as S from './styles'
 import { CardContent } from '@material-ui/core'
+import { connect } from 'react-redux'
 
 function CardRestaurant(props) {
 
-    const { restaurant } = props
+    const { restaurant, getRestaurantDetail } = props
 
-    const redirectRestaurant = (restaurantId) => {
-        // chamar a action que redireciona pro restaurant detail
-
+    const sendRestaurantId = (restaurantId) => {
+        getRestaurantDetail(restaurantId)
     }
 
     return (
         <S.CardRestaurantWrapper>
-            <S.CardImage onClick={() => redirectRestaurant(restaurant.id)}>
+            <S.CardImage onClick={() => sendRestaurantId(restaurant.id)}>
                 <S.Image
                     image={restaurant.logoUrl}
                     title={restaurant.name}
@@ -38,4 +40,8 @@ function CardRestaurant(props) {
     )
 }
 
-export default CardRestaurant
+const mapDispatchToProps = (dispatch) => ({
+    getRestaurantDetail: (restaurantId) => dispatch(getRestaurantDetail(restaurantId))
+})
+
+export default connect(null, mapDispatchToProps)(CardRestaurant)
