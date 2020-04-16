@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Appbar from '../../components/Appbar';
-
+import {getFullAdress} from '../../actions/user'
 import * as S from './styles';
+import { connect } from 'react-redux';
 
 function AdressEditPage(props) {
-  const { street, number, apartment, neighbourhood, city, state } = props;
+  const {adressInfo, getAdressInfo} = props
+  const { street, number, apartment, neighbourhood, city, state } = adressInfo
+
+  useEffect(()=> {
+    getAdressInfo()
+  }, [])
 
   const [inputs, setInputs] = useState({
     logradouro: street,
@@ -127,4 +133,12 @@ function AdressEditPage(props) {
   )
 }
 
-export default AdressEditPage;
+const mapStateToProps = state => ({
+  adressInfo: state.user.userAddress 
+})
+
+const mapDispatchToProps = dispatch => ({
+  getAdressInfo: () => dispatch(getFullAdress())
+})
+
+export default  connect(mapStateToProps, mapDispatchToProps)(AdressEditPage);
