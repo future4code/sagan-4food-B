@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Appbar from '../../components/Appbar';
 
 import * as S from './styles';
+import { connect } from 'react-redux';
+import {addAdress} from '../../actions/user'
 
 function AdressRegisterPage() {
 
@@ -19,27 +21,44 @@ function AdressRegisterPage() {
     setInputs({ ...inputs, [name]: value })
   }
 
+  const handleOnSubmit = event => {
+    event.preventDefault()
+    const addAdressData = {
+      street: inputs.logradouro,
+      number: inputs.numero,
+      neighbourhood: inputs.bairro,
+      city: inputs.cidade,
+      state: inputs.estado,
+      complement: inputs.complemento
+    }
+    console.log(addAdressData)
+  }
+
   const { logradouro, numero, complemento, bairro, cidade, estado } = inputs;
 
   return (
       <S.AndressRegisterWrapper>
       <Appbar page='adressRegister' />
         <S.Title>Meu Endreço</S.Title>
-        <S.Form>
+        <S.Form onSubmit={handleOnSubmit}>
           <S.Input
             name="logradouro"
             required
             type="text"
-            id="outlined-required"
+            //id="outlined-required"
             label="Logradouro"
-            value={logradouro}
+            value={logradouro || ""}
             onChange={handleInputs}
             placeholder="Rua / Av."
             variant="outlined"
             InputLabelProps={{
               shrink: true,
             }}
-            inputProps={{ pattern: "[a-zA-Zà-úÀ-ú ]" }} 
+            InputProps={{ 
+              inputProps: 
+              { 
+                pattern: '[a-zA-Zà-úÀ-ú ]' 
+            } }}
           />
           <S.Input
             name="numero"
@@ -54,7 +73,8 @@ function AdressRegisterPage() {
             InputLabelProps={{
               shrink: true,
             }}
-            inputProps={{ pattern: "[0-9]" }}
+            inputProps={{ 
+              pattern: "[^0-9]" }}
           />
           <S.Input
             name="complemento"
@@ -121,4 +141,10 @@ function AdressRegisterPage() {
   )
 }
 
-export default AdressRegisterPage;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addAdress: (addAdressData) => dispatch(addAdress(addAdressData))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(AdressRegisterPage);
