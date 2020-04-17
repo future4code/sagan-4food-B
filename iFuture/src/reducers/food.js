@@ -42,22 +42,12 @@ const food = (state = initialState, action) => {
       
       case 'REMOVE_QUANTITY':
         const newCopyInfoQuantity = [...state.infoQuantity]
-        console.log(action.payload.itemId)
-
-        // encontro o produto
-        const productHere = state.infoQuantity.findIndex(product => 
-          product.id === action.payload.itemId)
-        console.log(productHere)
+        const filtered = newCopyInfoQuantity.filter(product => 
+          product.id !== action.payload.itemId)
         
-        // achei, tiro ele
-        // if(productHere > -1){
-          newCopyInfoQuantity.slice(productHere, 1)
-        // }
-        console.log(newCopyInfoQuantity)
-
         return {
           ...state,
-          infoQuantity: newCopyInfoQuantity
+          infoQuantity: filtered
         }
 
       default:
