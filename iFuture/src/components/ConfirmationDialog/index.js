@@ -2,25 +2,32 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 
 import { setDialog } from '../../actions/confirmationDialog'
+import { setQuantity } from '../../actions/food'
 
 import * as S from './styles'
 import { Dialog, DialogActions, MenuItem } from '@material-ui/core';
 
 function ConfirmationDialog(props) {
 
-    const { open, setOpen, 
-        // item 
-    } = props
+    const { open, setOpen, itemId, setQuantity } = props
+    // console.log(itemId)
 
-    const [quantity, setQuantity] = useState(0)
+    const [quantityHere, setQuantityHere] = useState(0)
 
     const selectOption = (e) => {
-        setQuantity(e.target.value)
+        setQuantityHere(e.target.value)
     }
 
     const addQuantityAndClose = () => {
         // adicionar a quantidade ao respectivo produtos
         // ex: setQuantityInProduct(quantity, item.id)
+        
+        const infoQuantity = {
+            id: itemId,
+            quantity: quantityHere
+        }
+        setQuantity(infoQuantity)
+
 
         // e fecha
         setOpen(false);
@@ -51,7 +58,7 @@ function ConfirmationDialog(props) {
                     select
                     fullWidth
                     variant='outlined'
-                    value={quantity}
+                    value={quantityHere}
                     onChange={selectOption}
                     // SelectProps={{
                     //     background: "#000000 url('../../assets/back.svg') 95.5% 50% no-repeat" 
@@ -83,11 +90,13 @@ function ConfirmationDialog(props) {
 }
 
 const mapStateToProps = state => ({
-    open: state.confirmationDialog.dialogOpen
+    open: state.confirmationDialog.dialogOpen,
+    itemId: state.confirmationDialog.itemId
 })
 
 const mapDispatchToProps = dispatch => ({
-    setOpen: (option) => dispatch(setDialog(option))
+    setOpen: (option) => dispatch(setDialog(option)),
+    setQuantity: (infoQuantity) => dispatch(setQuantity(infoQuantity))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ConfirmationDialog)

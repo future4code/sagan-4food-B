@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import { setDialog } from '../../actions/confirmationDialog'
+import { setDialog, setItemId } from '../../actions/confirmationDialog'
 
 import { Typography } from '@material-ui/core';
 import * as S from './styles'
@@ -9,8 +9,8 @@ import * as S from './styles'
 import ConfirmationDialog from '../ConfirmationDialog';
 
 function CardFood(props) {
-  const { setOpen, item, page } = props
-  // console.log(item)
+  const { setOpen, item, page, setItemId, infoQuantity } = props
+  console.log(infoQuantity)
 
   let price
   if (page === 'restaurantDishes') {
@@ -23,8 +23,9 @@ function CardFood(props) {
     price = `R$ ${final}`
   }
 
-  const handleClickOpen = () => {
+  const handleClickOpen = (itemId) => {
     setOpen(true);
+    setItemId(itemId)
   };
 
   return (
@@ -48,17 +49,19 @@ function CardFood(props) {
         </div>
       </S.Content>
 
+      
+
       {/* {item.quantity !== 0
         ?
-        <>
+        <> */}
           <S.ButtonAddRemove 
             className="buttom" variant="outlined" color="default"
-            onClick={handleClickOpen}
+            onClick={() => handleClickOpen(item.id)}
           >
             adicionar
           </S.ButtonAddRemove>
-          <ConfirmationDialog item={item}/>
-        </>     
+          <ConfirmationDialog/>
+        {/* </>     
         :
         <S.ButtonAddRemove className="buttom" variant="outlined" color="primary" marginRed>
           remover
@@ -74,8 +77,13 @@ function CardFood(props) {
   )
 }
 
-const mapDispatchToProps = dispatch => ({
-  setOpen: (option) => dispatch(setDialog(option))
+const mapStateToProps = state => ({
+  infoQuantity: state.food.infoQuantity
 })
 
-export default connect(null, mapDispatchToProps)(CardFood)
+const mapDispatchToProps = dispatch => ({
+  setOpen: (option) => dispatch(setDialog(option)),
+  setItemId: (itemId) => dispatch(setItemId(itemId))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardFood)

@@ -47,3 +47,23 @@ export const getRestaurantDetail = (restaurantId) => async (dispatch) => {
         alert("Não foi possível acessar os detalhes do restaurante selecionado")
     }
   }
+
+
+export const setQuantity = (infoQuantity) => ({
+    type: 'SET_QUANTITY',
+    payload: {
+        infoQuantity
+    }
+})
+
+
+
+export const placeOrder = (placeOrderData) => async (dispatch) => {
+    console.log(placeOrderData)
+    try{
+
+    } catch (error) {
+        console.error(error.message)
+        alert("Não foi possível realizar o pedido")
+    }
+}

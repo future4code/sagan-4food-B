@@ -4,3 +4,10 @@ export const setDialog = (option) => ({
         option
     }
 })
+
+export const setItemId = (itemId) => ({
+    type: "SET_ITEM_ID",
+    payload: {
+        itemId
+    }
+})
