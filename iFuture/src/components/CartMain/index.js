@@ -1,7 +1,7 @@
 import React from 'react'
 import * as S from './styles'
 
-import CardFood from '../CardFood'
+import CardFoodInCart from '../CardFoodInCart'
 
 function CartMain(props) {
     const { restaurant } = props
@@ -9,7 +9,6 @@ function CartMain(props) {
     return (
         <main>
             { restaurant.products.length === 0
-                
                 ?
                 <S.EmptyCartWrapper>
                     <S.Text>
@@ -27,7 +26,7 @@ function CartMain(props) {
                     </S.DivMain>
 
                     {restaurant.products.map(item => (
-                        <CardFood item={item} page='cartMain' />
+                        <CardFoodInCart item={item} />
                     ))}
 
                 </S.FullCartWrapper>

@@ -6,16 +6,9 @@ import { setDialog, setItemId } from '../../actions/confirmationDialog'
 import { Typography } from '@material-ui/core';
 import * as S from './styles'
 
-import ConfirmationDialog from '../ConfirmationDialog';
-
-function CardFood(props) {
-  const { setOpen, item, setItemId, infoQuantity } = props
+function CardFoodInCart(props) {
+  const { item, infoQuantity } = props
   console.log(infoQuantity)
-
-  const handleClickOpen = (itemId) => {
-    setOpen(true);
-    setItemId(itemId)
-  };
 
   return (
     <S.CardWrapper key={item.id} elevation={0}>
@@ -33,36 +26,20 @@ function CardFood(props) {
         </Typography>
         <div className="bottomCard">
           <Typography className="price">
-            {item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+            R$ {item.price.includes(',')
+        ? item.price
+        : `${item.price},00`}
           </Typography>
         </div>
       </S.Content>
 
-      {/* {item.quantity !== 0
-        ?
-        <> */}
-      <S.ButtonAddRemove
-        className="buttom" variant="outlined" color="default"
-        onClick={() => handleClickOpen(item.id)}
-      >
-        adicionar
-          </S.ButtonAddRemove>
-      <ConfirmationDialog />
-      {/* </>     
-        :
-        <S.ButtonAddRemove className="buttom" variant="outlined" color="primary" marginRed>
-          remover
-        </S.ButtonAddRemove>
-      } */}
+      <S.ButtonRemove variant="outlined" >
+        remover
+      </S.ButtonRemove>
 
-      {/* {item.quantity !== 0 && */}
-
-      <S.Count color="default">
-        {/* {itemInfoQuantity.qua} */}
+      <S.Count>
         1
       </S.Count>
-
-      {/* } */}
 
     </S.CardWrapper>
   )
@@ -77,4 +54,4 @@ const mapDispatchToProps = dispatch => ({
   setItemId: (itemId) => dispatch(setItemId(itemId))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(CardFood)
+export default connect(mapStateToProps, mapDispatchToProps)(CardFoodInCart)

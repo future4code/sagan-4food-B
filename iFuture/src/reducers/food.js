@@ -22,8 +22,7 @@ const food = (state = initialState, action) => {
 
       case 'SET_QUANTITY':
         // console.log(action.payload.infoQuantity)
-        const copyInfoQuantity = [...state.infoQuantity]
-        const newInfoQuantity = [copyInfoQuantity, action.payload.infoQuantity]
+        const newInfoQuantity = [...state.infoQuantity, action.payload.infoQuantity]
         // console.log(newInfoQuantity)
         return {
           ...state,
