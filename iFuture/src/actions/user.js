@@ -27,6 +27,9 @@ export const addAdress = (addAdressData) => async (dispatch) => {
         const token = response.data.token
         localStorage.clear()
         localStorage.setItem("token", token)
+
+        // dispatch(setFullAddress(addAdressData))
+
     } catch (error) {
         console.error(error.message)
         alert("Não foi possivel cadastrar esse endereço, tente novamente mais tarde!")

@@ -16,10 +16,11 @@ class ProfileEditPage extends Component {
   }
   
 
-  componentDidMount = async () => {
-    await this.props.getProfile()
-    this.setState({
-      form: this.props.editUser
+  componentDidMount = () => {
+    this.props.getProfile().then(() => {
+      this.setState({
+        form: this.props.editUser
+      })
     })
   }
 
