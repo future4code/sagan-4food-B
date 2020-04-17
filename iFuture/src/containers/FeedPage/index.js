@@ -13,7 +13,8 @@ import { getRestaurants } from '../../actions/food';
 
 function FeedPage(props) {
 
-  const { goToSearch, restaurants, getRestaurants } = props
+  const { goToSearch, restaurants, getRestaurants, order } = props
+  console.log(order)
 
   useEffect(() => {
     getRestaurants()
@@ -99,7 +100,8 @@ function FeedPage(props) {
 }
 
 const mapStateToProps = state => ({
-  restaurants: state.food.restaurantsList
+  restaurants: state.food.restaurantsList,
+  order: state.food.order
 });
 
 const mapDispatchToProps = dispatch => ({

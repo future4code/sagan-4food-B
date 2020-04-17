@@ -70,10 +70,24 @@ export const setRestaurantId = (restaurantId) => ({
     }
 })
 
-export const placeOrder = (placeOrderData) => async (dispatch) => {
-    console.log(placeOrderData)
-    try{
+export const setOrder = (orderData) => ({
+    type: 'SET_ORDER',
+    payload: {
+        orderData
+    }
+})
 
+export const placeOrder = (placeOrderData, restaurantId) => async (dispatch) => {
+    try {
+        const response = await axios.post(`${baseUrl}/restaurants/${restaurantId}/order`, 
+        placeOrderData, 
+        {
+            headers: {
+                auth: getToken()
+            }
+        })
+        dispatch(setOrder(response.data.order))
+        dispatch(push(routes.feed))
     } catch (error) {
         console.error(error.message)
         alert("Não foi possível realizar o pedido")

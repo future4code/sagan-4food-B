@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import * as S from './styles'
 
+import { placeOrder } from '../../actions/food'
+import { connect } from 'react-redux'
+
 function CartFooter(props) {
-    const { restaurant, infoQuantity, filteredList } = props
-
-
+    const { restaurant, infoQuantity, filteredList, placeOrder, restaurantId } = props
 
     let newList = []
     for(let item of filteredList){
@@ -19,21 +20,21 @@ function CartFooter(props) {
         return total + numero
     }, 0)
 
-    console.log(valorTotal)
-
-    // let item = filteredList.map()
-
-    // const productExist = infoQuantity.findIndex(product =>
-    //     product.id === item.id)
-
-    const [payment, setpayment] = useState({ paymentMethod: '' })
+    const [payment, setpayment] = useState('')
 
     function savePaymentMethod(e) {
-        setpayment({ paymentMethod: e.target.id })
+        setpayment(e.target.id)
     }
 
-    function teste(e) {
+    function onPlaceOrder(e) {
         e.preventDefault()
+        const placeOrderData = {
+            products: infoQuantity,
+            paymentMethod: payment
+        }
+        console.log(restaurant)
+        console.log(restaurantId)
+        placeOrder(placeOrderData, restaurantId)
     }
 
     const total = valorTotal // fazer a lógica
@@ -52,14 +53,14 @@ function CartFooter(props) {
 
             <S.Title> Forma de pagamento </S.Title>
 
-            <S.FormWrapper onSubmit={teste}>
+            <S.FormWrapper onSubmit={onPlaceOrder}>
 
                 <S.PayementOptionBoxWrapper>
 
                     <S.RadioButtonWrapper
                         name="payementOption"
                         type="radio"
-                        value={payment.paymentMethod || ''}
+                        value={payment || ''}
                         id='money'
                         required
                         onClick={savePaymentMethod}
@@ -75,7 +76,7 @@ function CartFooter(props) {
                     <S.RadioButtonWrapper
                         name="payementOption"
                         type="radio"
-                        value={payment.paymentMethod || ''}
+                        value={payment || ''}
                         id='creditcard'
                         onClick={savePaymentMethod}
                         disabled={restaurant.products.length === 0 ? true : false}
@@ -98,4 +99,12 @@ function CartFooter(props) {
     )
 }
 
-export default CartFooter
+const mapStateToProps = state => ({
+    restaurantId: state.food.restaurantId
+})
+
+const mapDispatchToProps = dispatch => ({
+    placeOrder: (placeOrderData, restaurantId) => dispatch(placeOrder(placeOrderData, restaurantId))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartFooter)

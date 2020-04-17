@@ -31,3 +31,10 @@ export const Text = styled(Typography)`
   color: ${props => props.gray ? "#b8b8b8" : "#000000"};
   text-align: ${props => props.right && "right"};
 `
+
+export const EmptyCartWrapper = styled.div`
+    text-align: center;
+    height: 42px;
+    margin: 8px 0 33px;
+    width: 92%;
+`

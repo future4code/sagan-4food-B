@@ -39,12 +39,18 @@ function CartPage(props) {
           <S.Text> {user.address} </S.Text>
         </S.AdressBoxWrapper>
 
-        {Object.keys(restaurant).length !== 0 ? (
+        {Object.keys(restaurant).length !== 0
+          ?
           <>
             <CartMain filteredList={filteredList} restaurant={restaurant} />
             <CartFooter filteredList={filteredList} infoQuantity={infoQuantity} restaurant={restaurant} />
           </>
-        ) : <div>Oi</div>
+          :
+          <S.EmptyCartWrapper>
+            <S.Text>
+              Carrinho Vazio
+            </S.Text>
+          </S.EmptyCartWrapper>
         }
 
       </S.Container>

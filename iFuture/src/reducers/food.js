@@ -3,7 +3,8 @@ const initialState = {
   restaurantDetails: {},
   infoQuantity: [],
   restaurantId: 0,
-  selectedFood: []
+  selectedFood: [], 
+  order: {},
 }
 
 const food = (state = initialState, action) => {
@@ -56,6 +57,12 @@ const food = (state = initialState, action) => {
       return {
         ...state,
         infoQuantity: filtered
+      }
+
+    case 'SET_ORDER':
+      return {
+        ...state,
+        order: action.payload.orderData
       }
 
     default:
