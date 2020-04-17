@@ -6,14 +6,26 @@ import Bottombar from '../../components/Bottombar';
 import CartMain from '../../components/CartMain';
 import CartFooter from '../../components/CartFooter';
 
-// import restaurant from '../RestaurantPage/mock'
 import { connect } from 'react-redux';
 
 function CartPage(props) {
-  // const restaurant = { products: [] }
-  const { user, restaurant } = props
-  console.log(restaurant)
   
+  const { user, restaurant, infoQuantity } = props
+  
+  let filteredList = []
+  if (restaurant.products) {
+  for(let item of restaurant.products){
+      for(let elem of infoQuantity) {
+          if (item.id === elem.id) {
+              filteredList.push(item)
+          }
+      }
+  }
+}
+
+
+
+
   return (
     <S.ContentWrapper>
       <Appbar page='cart' />
@@ -25,15 +37,13 @@ function CartPage(props) {
           <S.Text> {user.address} </S.Text>
         </S.AdressBoxWrapper>
         
-        {/* {restaurant 
-        ? 
-        <div>Oi</div> 
-        : 
-        <> */}
-        <CartMain restaurant={restaurant}/>
-        <CartFooter restaurant={restaurant}/>
-        {/* </>
-        } */}
+      {Object.keys(restaurant).length !== 0 ? (
+        <>
+      <CartMain filteredList={filteredList} restaurant={restaurant}/>
+      <CartFooter filteredList={filteredList} infoQuantity={infoQuantity} restaurant={restaurant}/>
+      </>
+      ) : <div>Oi</div>
+    }
 
       </S.Container>
 
@@ -44,7 +54,8 @@ function CartPage(props) {
 
 const mapStateToProps = state => ({
   restaurant: state.food.restaurantDetails,
-  user: state.user.user
+  user: state.user.user,
+  infoQuantity: state.food.infoQuantity
 });
 
 export default connect(mapStateToProps)(CartPage);

@@ -5,10 +5,18 @@ import { setDialog, setItemId } from '../../actions/confirmationDialog'
 
 import { Typography } from '@material-ui/core';
 import * as S from './styles'
+import { removeQuantity } from '../../actions/food';
 
 function CardFoodInCart(props) {
-  const { item, infoQuantity } = props
+  const { item, infoQuantity, removeQuantity } = props
   console.log(infoQuantity)
+
+  const productExist = infoQuantity.findIndex(product =>
+    product.id === item.id)
+
+  const removeItem = (itemId) => {
+    removeQuantity(itemId)
+  }
 
   return (
     <S.CardWrapper key={item.id} elevation={0}>
@@ -31,12 +39,12 @@ function CardFoodInCart(props) {
         </div>
       </S.Content>
 
-      <S.ButtonRemove variant="outlined" >
+      <S.ButtonRemove variant="outlined" onClick={() => removeItem(item.id)} >
         remover
       </S.ButtonRemove>
 
       <S.Count>
-        1
+        {infoQuantity[productExist].quantity}
       </S.Count>
 
     </S.CardWrapper>
@@ -49,7 +57,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   setOpen: (option) => dispatch(setDialog(option)),
-  setItemId: (itemId) => dispatch(setItemId(itemId))
+  setItemId: (itemId) => dispatch(setItemId(itemId)),
+  removeQuantity: (itemId) => dispatch(removeQuantity(itemId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardFoodInCart)

@@ -40,15 +40,17 @@ describe('User actions', () => {
 
         let mockDispatch
         let mockTest
+
         beforeEach(() => {
             mockDispatch = jest.fn()
             mockTest = "test"
+            localStorage.setItem = jest.fn()
         });
 
 
         it('addAdress', async () => {
 
-            axios.put = jest.fn(() => ({ data: mockTest }))
+            axios.put = jest.fn(() => ({ data: { fullAddress: mockTest } }))
 
             const response = axios.put() // aqui ela é síncrona = responde instantaneamente
             console.log(response.data)
@@ -58,9 +60,9 @@ describe('User actions', () => {
             // expect(mockDispatch).toHaveBeenCalled()
 
             // expect(mockDispatch).toHaveBeenCalledWith({
-            //     type: "SET_TASKS",
+            //     type: "SET_FULL_ADDRESS",
             //     payload: {
-            //         tasks: mockDataTaskCreated
+            //         fullAddress: mockTest
             //     }
             // })
 
@@ -69,18 +71,18 @@ describe('User actions', () => {
 
         it('getFullAdress', async () => {
 
-            axios.get = jest.fn(() => ({ data: mockTest }))
+            axios.get = jest.fn(() => ({ data: { address: mockTest } }))
 
             await getFullAdress()(mockDispatch)
 
             expect(mockDispatch).toHaveBeenCalled()
 
-            // expect(mockDispatch).toHaveBeenCalledWith({
-            //     type: "SET_FULL_ADDRESS",
-            //     payload: {
-            //         fullAddress: mockTest
-            //     }
-            // })
+            expect(mockDispatch).toHaveBeenCalledWith({
+                type: "SET_FULL_ADDRESS",
+                payload: {
+                    fullAddress: mockTest
+                }
+            })
         })
 
 
@@ -104,13 +106,11 @@ describe('User actions', () => {
 
         it('login', async () => {
 
-            // axios.post = jest.fn()
+            axios.post = jest.fn(() => ({ data: { token: mockTest } }))
 
-            // await login(mockTest)(mockDispatch)
+            await login(mockTest)(mockDispatch)
 
-            // expect(mockDispatch).toHaveBeenCalled()
-
-
+            expect(mockDispatch).toHaveBeenCalled()
         })
 
 
@@ -123,9 +123,37 @@ describe('User actions', () => {
         })
 
 
-        // it('updateProfile', async () => {
+        it('updateProfile', async () => {
 
-        // })
+            axios.put = jest.fn(() => ({
+                data: {
+                    user: {
+                        id: "De8UACSFgFySnKdXm5hI",
+                        name: "Astrodev",
+                        email: "astrodev@future4.com",
+                        cpf: "111.111.111-12",
+                        hasAddress: true,
+                        address: "R. Afonso Braz, 177 - Vila N. Conceição"
+                    }
+                }
+            }))
+
+            await updateProfile(mockTest)(mockDispatch)
+
+            expect(mockDispatch).toHaveBeenCalledWith({
+                type: "SET_PROFILE",
+                payload: {
+                    info: {
+                        id: "De8UACSFgFySnKdXm5hI",
+                        name: "Astrodev",
+                        email: "astrodev@future4.com",
+                        cpf: "111.111.111-12",
+                        hasAddress: true,
+                        address: "R. Afonso Braz, 177 - Vila N. Conceição"
+                    }
+                }
+            })
+        })
 
     })
 

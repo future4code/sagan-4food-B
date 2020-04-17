@@ -1,22 +1,12 @@
 import React from 'react'
-import { connect } from 'react-redux'
 
 import * as S from './styles'
 
 import CardFoodInCart from '../CardFoodInCart'
 
 function CartMain(props) {
-    const { restaurant, infoQuantity } = props
+    const { restaurant, filteredList } = props
 
-
-    let filteredList = []
-    for(let item of restaurant.products){
-        for(let elem of infoQuantity) {
-            if (item.id === elem.id) {
-                filteredList.push(item)
-            }
-        }
-    }
     console.log('filteredlist',filteredList)
 
     return (
@@ -48,8 +38,5 @@ function CartMain(props) {
     )
 }
 
-const mapStateToProps = state => ({
-    infoQuantity: state.food.infoQuantity
-})
 
-export default connect(mapStateToProps)(CartMain)
+export default CartMain;
