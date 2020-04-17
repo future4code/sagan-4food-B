@@ -6,12 +6,13 @@ import Bottombar from '../../components/Bottombar';
 import CartMain from '../../components/CartMain';
 import CartFooter from '../../components/CartFooter';
 
-import restaurant from '../RestaurantPage/mock'
+// import restaurant from '../RestaurantPage/mock'
 import { connect } from 'react-redux';
 
 function CartPage(props) {
   // const restaurant = { products: [] }
-  // const { restaurant } = props
+  const { user, restaurant } = props
+  console.log(restaurant)
   
   return (
     <S.ContentWrapper>
@@ -21,13 +22,19 @@ function CartPage(props) {
         
         <S.AdressBoxWrapper>
           <S.Text gray> Endereço da entrega </S.Text>
-          <S.Text> {restaurant.address} </S.Text>
+          <S.Text> {user.address} </S.Text>
         </S.AdressBoxWrapper>
-
-        <CartMain restaurant={restaurant}/>
-
-        <CartFooter restaurant={restaurant}/>
         
+        {/* {restaurant 
+        ? 
+        <div>Oi</div> 
+        : 
+        <> */}
+        <CartMain restaurant={restaurant}/>
+        <CartFooter restaurant={restaurant}/>
+        {/* </>
+        } */}
+
       </S.Container>
 
       <Bottombar page='cart' />
@@ -36,7 +43,8 @@ function CartPage(props) {
 }
 
 const mapStateToProps = state => ({
-  // restaurant: state.food.restaurantDetails
+  restaurant: state.food.restaurantDetails,
+  user: state.user.user
 });
 
 export default connect(mapStateToProps)(CartPage);

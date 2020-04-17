@@ -26,9 +26,7 @@ function CardFoodInCart(props) {
         </Typography>
         <div className="bottomCard">
           <Typography className="price">
-            R$ {item.price.includes(',')
-        ? item.price
-        : `${item.price},00`}
+            {item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
           </Typography>
         </div>
       </S.Content>
