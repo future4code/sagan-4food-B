@@ -86,7 +86,6 @@ export const placeOrder = (placeOrderData, restaurantId) => async (dispatch) => 
                 auth: getToken()
             }
         })
-        // dispatch(setOrder(response.data.order))
         dispatch(push(routes.feed))
     } catch (error) {
         console.error(error.message)
@@ -103,6 +102,28 @@ export const getActiveOrder = () => async (dispatch) => {
             }
         })
         dispatch(setOrder(response.data.order))
+    } catch (error) {
+        console.error(error.message)
+        alert("Não foi buscar dados do pedido atual")
+    }
+}
+
+export const setOrdersHistory = (ordersData) => ({
+    type: 'SET_ORDERS_HISTORY',
+    payload: {
+        ordersData
+    }
+})
+
+export const getOrdersHistory = () => async (dispatch) => {
+    try {
+        const response = await axios.get(`${baseUrl}/orders/history`, 
+        {
+            headers: {
+                auth: getToken()
+            }
+        })
+        dispatch(setOrdersHistory(response.data.orders))
     } catch (error) {
         console.error(error.message)
         alert("Não foi buscar dados do pedido atual")

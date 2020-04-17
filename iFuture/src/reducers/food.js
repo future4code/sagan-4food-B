@@ -5,6 +5,7 @@ const initialState = {
   restaurantId: 0,
   selectedFood: [], 
   order: {},
+  orders: []
 }
 
 const food = (state = initialState, action) => {
@@ -63,6 +64,12 @@ const food = (state = initialState, action) => {
       return {
         ...state,
         order: action.payload.orderData
+      }
+
+    case 'SET_ORDERS_HISTORY':
+      return {
+        ...state,
+        orders: action.payload.ordersData
       }
 
     default:
