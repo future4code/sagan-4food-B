@@ -69,7 +69,7 @@ function ConfirmationDialog(props) {
                         IconComponent: () => <S.Img src={require("../../assets/dropdown.svg")} alt='home' />,
                       }}
                 >
-                    <MenuItem value='0'>0</MenuItem>
+                    {/* <MenuItem value='0'>0</MenuItem> */}
                     {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(number => (
                         <MenuItem value={number}>{number}</MenuItem>
                     ))}

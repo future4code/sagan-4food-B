@@ -2,6 +2,7 @@ const initialState = {
   restaurantsList: [],
   restaurantDetails: {},
   infoQuantity: [],
+  restaurantId: 0
 }
 
 const food = (state = initialState, action) => {
@@ -18,6 +19,12 @@ const food = (state = initialState, action) => {
         return {
           ...state,
           restaurantDetails: action.payload.restaurantDetails
+        }
+      
+      case 'SET_RESTAURANT_ID':
+        return {
+          ...state,
+          restaurantId: action.payload.restaurantId
         }
 
       case 'SET_QUANTITY':
