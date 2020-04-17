@@ -9,7 +9,19 @@ import * as S from './styles'
 import ConfirmationDialog from '../ConfirmationDialog';
 
 function CardFood(props) {
-  const { item, setOpen } = props
+  const { setOpen, item, page } = props
+  // console.log(item)
+
+  let price
+  if (page === 'restaurantDishes') {
+    price = item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+  }
+  if (page === 'cartMain') {
+    const final = item.price.includes(',')
+      ? item.price
+      : `${item.price},00`
+    price = `R$ ${final}`
+  }
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -31,11 +43,7 @@ function CardFood(props) {
         </Typography>
         <div className="bottomCard">
           <Typography className="price">
-            {/* Precisamos colocar os centavos dos valores. */}
-            {/* R$ {item.price.includes(',')
-            ? item.price
-            : `${item.price},00`
-            } */}
+            {price}
           </Typography>
         </div>
       </S.Content>

@@ -25,6 +25,15 @@ export const CardWrapper = styled(Card)`
     justify-content: space-between;
   }
 `
+export const Content = styled(CardContent)`
+  padding: 0px;
+`
+
+export const Img = styled(CardMedia)`
+  width: 96px;
+  height: 112px;
+  margin-right: 16px;
+`
 
 export const ButtonAddRemove = styled(Button)`
   width: 90px;
@@ -38,15 +47,9 @@ export const ButtonAddRemove = styled(Button)`
   text-transform: lowercase;
 `
 
-export const Img = styled(CardMedia)`
-  width: 96px;
-  height: 112px;
-  margin-right: 16px;
-`
 
-export const Content = styled(CardContent)`
-  padding: 0px;
-`
+
+
 
 export const Count = styled.div`
     width: 33px;

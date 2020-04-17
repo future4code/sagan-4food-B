@@ -27,7 +27,7 @@ function CartMain(props) {
                     </S.DivMain>
 
                     {restaurant.products.map(item => (
-                        <CardFood item={item} />
+                        <CardFood item={item} page='cartMain' />
                     ))}
 
                 </S.FullCartWrapper>
