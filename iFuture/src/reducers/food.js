@@ -21,12 +21,23 @@ const food = (state = initialState, action) => {
         }
 
       case 'SET_QUANTITY':
-        // console.log(action.payload.infoQuantity)
-        const newInfoQuantity = [...state.infoQuantity, action.payload.infoQuantity]
-        // console.log(newInfoQuantity)
+        const copyInfoQuantity = [...state.infoQuantity]
+
+        // checo se já tem o produto
+        const productExist = state.infoQuantity.findIndex(product => 
+          product.id === action.payload.infoQuantity.id)
+        
+        // se já tem, só acrescento a quantidade
+        if(productExist > -1){
+          copyInfoQuantity[productExist].quantity += action.payload.infoQuantity.quantity
+        } else {
+          copyInfoQuantity.push(action.payload.infoQuantity)
+        }
+        console.log(copyInfoQuantity)
+      
         return {
           ...state,
-          infoQuantity: newInfoQuantity
+          infoQuantity: copyInfoQuantity
         }
 
       default:

@@ -10,7 +10,7 @@ import ConfirmationDialog from '../ConfirmationDialog';
 
 function CardFood(props) {
   const { setOpen, item, setItemId, infoQuantity } = props
-  console.log(infoQuantity)
+  // console.log(infoQuantity)
 
   const handleClickOpen = (itemId) => {
     setOpen(true);
