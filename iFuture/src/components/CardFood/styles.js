@@ -9,6 +9,7 @@ export const CardWrapper = styled(Card)`
   display: flex;
   align-items: center;
   position: relative;
+  overflow: hidden;
   height: 112px;
 
   .description {
@@ -35,11 +36,12 @@ export const Img = styled(CardMedia)`
   margin-right: 16px;
 `
 
-export const ButtonAddRemove = styled(Button)`
+export const ButtonAdd = styled(Button)`
   width: 90px;
   height: 31px;
   border-radius: 8px 0px 8px 0px;
-  border: ${props => props.marginRed ? "solid 1px #e8222e" : "solid 1px #000000"};
+  color: #000000;
+  border: solid 1px #000000;
   position: absolute;
   bottom: 0;
   right: 0;
@@ -47,15 +49,25 @@ export const ButtonAddRemove = styled(Button)`
   text-transform: lowercase;
 `
 
-
-
-
+export const ButtonRemove = styled(Button)`
+  width: 90px;
+  height: 31px;
+  border-radius: 8px 0px 8px 0px;
+  color: #e8222e;
+  border: solid 1px #e8222e;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 12px;
+  text-transform: lowercase;
+`
 
 export const Count = styled.div`
     width: 33px;
     height: 33px;
     border-radius: 0px 8px 0px 8px;
-    border: solid 1px #000000;
+    color: #e8222e;
+    border: solid 1px #e8222e;
     position: absolute;
     top: 0;
     right: 0;

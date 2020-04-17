@@ -1,11 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux'
-
-import { setDialog, setItemId } from '../../actions/confirmationDialog'
-
 import { Typography } from '@material-ui/core';
 import * as S from './styles'
 
+import { setDialog, setItemId } from '../../actions/confirmationDialog'
 import ConfirmationDialog from '../ConfirmationDialog';
 
 function CardFood(props) {
@@ -42,17 +40,19 @@ function CardFood(props) {
 
       {productExist > -1
         ?
-        <S.ButtonAddRemove className="buttom" variant="outlined" color="primary" marginRed>
+        <S.ButtonRemove 
+          variant="outlined" 
+        >
           remover
-        </S.ButtonAddRemove>
+        </S.ButtonRemove>
         :
         <>
-          <S.ButtonAddRemove
-            className="buttom" variant="outlined" color="default"
+          <S.ButtonAdd
+            variant="outlined"
             onClick={() => handleClickOpen(item.id)}
           >
             adicionar
-          </S.ButtonAddRemove>
+          </S.ButtonAdd>
           <ConfirmationDialog />
         </>
       }
@@ -60,7 +60,6 @@ function CardFood(props) {
       {productExist > -1
         &&
         <S.Count color="default">
-          {/* {itemInfoQuantity.qua} */}
         {infoQuantity[productExist].quantity}
       </S.Count>
       }
