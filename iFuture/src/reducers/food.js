@@ -2,6 +2,7 @@ const initialState = {
   restaurantsList: [],
   restaurantDetails: {},
   infoQuantity: [],
+  restaurantId: 0
 }
 
 const food = (state = initialState, action) => {
@@ -19,6 +20,12 @@ const food = (state = initialState, action) => {
           ...state,
           restaurantDetails: action.payload.restaurantDetails
         }
+      
+      case 'SET_RESTAURANT_ID':
+        return {
+          ...state,
+          restaurantId: action.payload.restaurantId
+        }
 
       case 'SET_QUANTITY':
         const copyInfoQuantity = [...state.infoQuantity]
@@ -33,11 +40,21 @@ const food = (state = initialState, action) => {
         } else {
           copyInfoQuantity.push(action.payload.infoQuantity)
         }
-        console.log(copyInfoQuantity)
+        // console.log(copyInfoQuantity)
       
         return {
           ...state,
           infoQuantity: copyInfoQuantity
+        }
+      
+      case 'REMOVE_QUANTITY':
+        const newCopyInfoQuantity = [...state.infoQuantity]
+        const filtered = newCopyInfoQuantity.filter(product => 
+          product.id !== action.payload.itemId)
+        
+        return {
+          ...state,
+          infoQuantity: filtered
         }
 
       default:

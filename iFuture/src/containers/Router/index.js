@@ -12,6 +12,7 @@ import ProfileEditPage from "../ProfileEditPage";
 import CartPage from "../CartPage";
 import RestaurantPage from "../RestaurantPage";
 import SearchPage from "../SearchPage";
+import { ProtectedRoute } from "../../components/ProtectedRout";
 
 export const routes = {
   login: '/',
@@ -32,14 +33,17 @@ function Router(props) {
       <Switch>
         <Route exact path={routes.login} component={() => <LoginPage/>} />
         <Route exact path={routes.signup} component={() => <SignupPage/>} />
-        <Route exact path={routes.adressRegister} component={() => <AdressRegisterPage/>} />
-        <Route exact path={routes.feed} component={() => <FeedPage/>} />
-        <Route exact path={routes.search} component={() => <SearchPage/>} />
-        <Route exact path={routes.restaurant} component={() => <RestaurantPage/>} />
-        <Route exact path={routes.profile} component={() => <ProfilePage/>} />
-        <Route exact path={routes.profileEdit} component={() => <ProfileEditPage/>} />
-        <Route exact path={routes.adressEdit} component={() => <AdressEditPage/>} />
-        <Route exact path={routes.cart} component={() => <CartPage/>} />
+        
+        <ProtectedRoute exact path={routes.adressRegister} component={() => <AdressRegisterPage/>} />
+        
+        <ProtectedRoute exact path={routes.feed} component={() => <FeedPage/>} />
+        <ProtectedRoute exact path={routes.search} component={() => <SearchPage/>} />
+        <ProtectedRoute exact path={routes.restaurant} component={() => <RestaurantPage/>} />
+        <ProtectedRoute exact path={routes.profile} component={() => <ProfilePage/>} />
+        <ProtectedRoute exact path={routes.profileEdit} component={() => <ProfileEditPage/>} />
+        <ProtectedRoute exact path={routes.adressEdit} component={() => <AdressEditPage/>} />
+        <ProtectedRoute exact path={routes.cart} component={() => <CartPage/>} />
+        
         <Route path='*' component={() => 'Página não encontrada'} />
       </Switch>
     </ConnectedRouter>

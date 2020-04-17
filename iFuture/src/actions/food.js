@@ -56,7 +56,19 @@ export const setQuantity = (infoQuantity) => ({
     }
 })
 
+export const removeQuantity = (itemId) => ({
+    type: 'REMOVE_QUANTITY',
+    payload: {
+        itemId
+    }
+})
 
+export const setRestaurantId = (restaurantId) => ({
+    type: 'SET_RESTAURANT_ID',
+    payload: {
+        restaurantId
+    }
+})
 
 export const placeOrder = (placeOrderData) => async (dispatch) => {
     console.log(placeOrderData)

@@ -4,18 +4,27 @@ import { Typography } from '@material-ui/core';
 import * as S from './styles'
 
 import { setDialog, setItemId } from '../../actions/confirmationDialog'
+import { removeQuantity, setRestaurantId } from '../../actions/food'
+
 import ConfirmationDialog from '../ConfirmationDialog';
 
 function CardFood(props) {
-  const { setOpen, item, setItemId, infoQuantity } = props
+  const { setOpen, item, restaurantId, setRestaurantId, setItemId, infoQuantity, removeQuantity, idRestaurant } = props
+  console.log(restaurantId)
+  console.log(idRestaurant)
 
   const productExist = infoQuantity.findIndex(product =>
     product.id === item.id)
 
-  const handleClickOpen = (itemId) => {
+  const handleClickOpen = (itemId, restaurantIdHere) => {
     setOpen(true);
     setItemId(itemId)
+    setRestaurantId(restaurantIdHere)
   };
+
+  const clickToRemove = (itemId) => {
+    removeQuantity(itemId)
+  }
 
   return (
     <S.CardWrapper key={item.id} elevation={0}>
@@ -42,6 +51,7 @@ function CardFood(props) {
         ?
         <S.ButtonRemove 
           variant="outlined" 
+          onClick={() => clickToRemove(item.id)}
         >
           remover
         </S.ButtonRemove>
@@ -49,7 +59,7 @@ function CardFood(props) {
         <>
           <S.ButtonAdd
             variant="outlined"
-            onClick={() => handleClickOpen(item.id)}
+            onClick={() => handleClickOpen(item.id, restaurantId)}
           >
             adicionar
           </S.ButtonAdd>
@@ -69,12 +79,15 @@ function CardFood(props) {
 }
 
 const mapStateToProps = state => ({
-  infoQuantity: state.food.infoQuantity
+  infoQuantity: state.food.infoQuantity,
+  idRestaurant: state.food.restaurantId
 })
 
 const mapDispatchToProps = dispatch => ({
   setOpen: (option) => dispatch(setDialog(option)),
-  setItemId: (itemId) => dispatch(setItemId(itemId))
+  setItemId: (itemId) => dispatch(setItemId(itemId)),
+  removeQuantity: (itemId) => dispatch(removeQuantity(itemId)),
+  setRestaurantId: (restaurantId) => dispatch(setRestaurantId(restaurantId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardFood)

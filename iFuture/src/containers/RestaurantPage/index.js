@@ -9,7 +9,6 @@ import { connect } from 'react-redux';
 
 function RestaurantPage(props) {
   const {mock} = props
-
   return (
     <div>
       <Appbar page='restaurant' />
@@ -18,7 +17,7 @@ function RestaurantPage(props) {
           mock={mock}
         />
         <RestaurantDishes 
-          data={mock.products}
+          data={mock}
         />
       </S.RestaurantWrapper>
     </div>

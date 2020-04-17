@@ -2,19 +2,15 @@ import React from 'react';
 import * as S from './styles'
 
 import CardFood from '../CardFood';
-import { connect } from 'react-redux';
 
 function RestaurantDishes(props) {
-    const { data, infoQuantity } = props
-    // console.log(infoQuantity)
-
-    // const itemInfoQuantity = data.filter(item => item.id === infoQuantity.id)
-
+    const { data } = props
+   
     return (
         <div>
             <S.Title> Principais </S.Title>
 
-            {data
+            {data.products
             .filter(item => item.category !== 'Acompanhamento')
             .map(item => (
                 <CardFood item={item}  />
@@ -22,16 +18,14 @@ function RestaurantDishes(props) {
 
             <S.Title> Acompanhamentos </S.Title>
 
-            {data
+            {data.products
             .filter(item => item.category === 'Acompanhamento')
             .map(item => (
-                <CardFood item={item} />
+                <CardFood item={item} restaurantId={data.id} />
             ))}
         </div>
     )
 }
-const mapStateToProps = state => ({
-    // infoQuantity: state.food.infoQuantity
-  })
 
-export default connect(mapStateToProps)(RestaurantDishes);
+
+export default RestaurantDishes;
