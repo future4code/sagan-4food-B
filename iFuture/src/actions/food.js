@@ -56,7 +56,12 @@ export const setQuantity = (infoQuantity) => ({
     }
 })
 
-
+export const removeQuantity = (itemId) => ({
+    type: 'REMOVE_QUANTITY',
+    payload: {
+        itemId
+    }
+})
 
 export const placeOrder = (placeOrderData) => async (dispatch) => {
     console.log(placeOrderData)

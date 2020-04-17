@@ -33,11 +33,31 @@ const food = (state = initialState, action) => {
         } else {
           copyInfoQuantity.push(action.payload.infoQuantity)
         }
-        console.log(copyInfoQuantity)
+        // console.log(copyInfoQuantity)
       
         return {
           ...state,
           infoQuantity: copyInfoQuantity
+        }
+      
+      case 'REMOVE_QUANTITY':
+        const newCopyInfoQuantity = [...state.infoQuantity]
+        console.log(action.payload.itemId)
+
+        // encontro o produto
+        const productHere = state.infoQuantity.findIndex(product => 
+          product.id === action.payload.itemId)
+        console.log(productHere)
+        
+        // achei, tiro ele
+        // if(productHere > -1){
+          newCopyInfoQuantity.slice(productHere, 1)
+        // }
+        console.log(newCopyInfoQuantity)
+
+        return {
+          ...state,
+          infoQuantity: newCopyInfoQuantity
         }
 
       default:
