@@ -1,18 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux'
-
-import { setDialog } from '../../actions/confirmationDialog'
-
 import { Typography } from '@material-ui/core';
 import * as S from './styles'
 
+import { setDialog, setItemId } from '../../actions/confirmationDialog'
 import ConfirmationDialog from '../ConfirmationDialog';
 
 function CardFood(props) {
-  const { item, setOpen } = props
+  const { setOpen, item, setItemId, infoQuantity } = props
 
-  const handleClickOpen = () => {
+  const productExist = infoQuantity.findIndex(product =>
+    product.id === item.id)
+
+  const handleClickOpen = (itemId) => {
     setOpen(true);
+    setItemId(itemId)
   };
 
   return (
@@ -31,43 +33,48 @@ function CardFood(props) {
         </Typography>
         <div className="bottomCard">
           <Typography className="price">
-            {/* Precisamos colocar os centavos dos valores. */}
-            {/* R$ {item.price.includes(',')
-            ? item.price
-            : `${item.price},00`
-            } */}
+            {item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
           </Typography>
         </div>
       </S.Content>
 
-      {/* {item.quantity !== 0
+      {productExist > -1
         ?
+        <S.ButtonRemove 
+          variant="outlined" 
+        >
+          remover
+        </S.ButtonRemove>
+        :
         <>
-          <S.ButtonAddRemove 
-            className="buttom" variant="outlined" color="default"
-            onClick={handleClickOpen}
+          <S.ButtonAdd
+            variant="outlined"
+            onClick={() => handleClickOpen(item.id)}
           >
             adicionar
-          </S.ButtonAddRemove>
-          <ConfirmationDialog item={item}/>
-        </>     
-        :
-        <S.ButtonAddRemove className="buttom" variant="outlined" color="primary" marginRed>
-          remover
-        </S.ButtonAddRemove>
-      } */}
+          </S.ButtonAdd>
+          <ConfirmationDialog />
+        </>
+      }
 
-      {/* {item.quantity !== 0 &&
+      {productExist > -1
+        &&
         <S.Count color="default">
-          {item.quantity}
-        </S.Count>} */}
+        {infoQuantity[productExist].quantity}
+      </S.Count>
+      }
 
     </S.CardWrapper>
   )
 }
 
-const mapDispatchToProps = dispatch => ({
-  setOpen: (option) => dispatch(setDialog(option))
+const mapStateToProps = state => ({
+  infoQuantity: state.food.infoQuantity
 })
 
-export default connect(null, mapDispatchToProps)(CardFood)
+const mapDispatchToProps = dispatch => ({
+  setOpen: (option) => dispatch(setDialog(option)),
+  setItemId: (itemId) => dispatch(setItemId(itemId))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardFood)

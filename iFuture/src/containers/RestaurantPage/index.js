@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React from 'react';
 
 import * as S from './styles'
 
@@ -15,12 +15,7 @@ function RestaurantPage(props) {
       <Appbar page='restaurant' />
       <S.RestaurantWrapper>
         <RestaurantHeader
-          img={mock.logoUrl}
-          name={mock.name}
-          category={mock.category}
-          deliveryTime={mock.deliveryTime}
-          shipping={mock.shipping}
-          address={mock.address}
+          mock={mock}
         />
         <RestaurantDishes 
           data={mock.products}

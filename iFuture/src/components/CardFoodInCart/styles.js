@@ -9,7 +9,6 @@ export const CardWrapper = styled(Card)`
   display: flex;
   align-items: center;
   position: relative;
-  overflow: hidden;
   height: 112px;
 
   .description {
@@ -34,19 +33,6 @@ export const Img = styled(CardMedia)`
   width: 96px;
   height: 112px;
   margin-right: 16px;
-`
-
-export const ButtonAdd = styled(Button)`
-  width: 90px;
-  height: 31px;
-  border-radius: 8px 0px 8px 0px;
-  color: #000000;
-  border: solid 1px #000000;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  font-size: 12px;
-  text-transform: lowercase;
 `
 
 export const ButtonRemove = styled(Button)`

@@ -81,7 +81,7 @@ function ProfilePage(props) {
           </S.EmptyOrders>
           :
           orderHistoryListMock.map(order => (
-            <CardHistory key={order} order={order} />
+            <CardHistory key={order.name} order={order} />
           ))
         }
 

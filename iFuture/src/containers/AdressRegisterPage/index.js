@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { push } from 'connected-react-router'
+import { routes } from '../Router'
+
+import {addAdress} from '../../actions/user'
 import Appbar from '../../components/Appbar';
 
 import * as S from './styles';
-import { connect } from 'react-redux';
-import {addAdress} from '../../actions/user'
 
 function AdressRegisterPage(props) {
 
@@ -21,7 +24,7 @@ function AdressRegisterPage(props) {
     setInputs({ ...inputs, [name]: value })
   }
 
-  const handleOnSubmit = event => {
+  const handleOnSubmit = async (event) => {
     event.preventDefault()
     const addAdressData = {
       street: inputs.logradouro,
@@ -31,7 +34,8 @@ function AdressRegisterPage(props) {
       state: inputs.estado,
       complement: inputs.complemento
     }
-    props.addAdress(addAdressData)
+    await props.addAdress(addAdressData)
+    props.goToFeed()
   }
 
   const { logradouro, numero, complemento, bairro, cidade, estado } = inputs;
@@ -156,7 +160,8 @@ function AdressRegisterPage(props) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addAdress: (addAdressData) => dispatch(addAdress(addAdressData))
+    addAdress: (addAdressData) => dispatch(addAdress(addAdressData)),
+    goToFeed: () => dispatch(push(routes.feed))
   }
 }
 

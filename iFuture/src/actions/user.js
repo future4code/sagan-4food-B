@@ -27,7 +27,7 @@ export const addAdress = (addAdressData) => async (dispatch) => {
         const token = response.data.token
         localStorage.clear()
         localStorage.setItem("token", token)
-        dispatch(push(routes.feed))
+        // dispatch(push(routes.feed))
     } catch (error) {
         console.error(error.message)
         alert("Não foi possivel cadastrar esse endereço, tente novamente mais tarde!")
@@ -79,7 +79,6 @@ export const setFullAddress = (fullAddress) => ({
 })
 
 export const getFullAdress = () => async (dispatch) => {
-    console.log('ooi fui disparada')
     try {
         const response = await axios.get(`${baseUrl}/profile/address`,
             {
@@ -102,6 +101,7 @@ export const updateProfile = dataUpdateProfile => async dispatch => {
         })
 
         dispatch(setProfile(response.data.user))
+        dispatch(push(routes.profile))
     } catch(error) {
         console.error(error.message)
         alert("Não foi possível atualizar os dados do usuário.")

@@ -1,5 +1,6 @@
 const initialState = {
-    dialogOpen: false
+    dialogOpen: false,
+    itemId: 0
 }
 
 const confirmationDialog = (state = initialState, action) => {
@@ -10,6 +11,12 @@ const confirmationDialog = (state = initialState, action) => {
             return {
                 ...state,
                 dialogOpen: action.payload.option
+            }
+        
+        case 'SET_ITEM_ID':
+            return {
+                ...state,
+                itemId: action.payload.itemId
             }
 
         default:
