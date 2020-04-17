@@ -11,8 +11,7 @@ import CartFooter from '../../components/CartFooter';
 
 function CartPage(props) {
 
-  const { user, restaurant, infoQuantity } = props
-  console.log(user)
+  const { user, restaurant, infoQuantity, getProfile } = props
 
   useEffect(() => {
     getProfile()
