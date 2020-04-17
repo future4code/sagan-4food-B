@@ -7,12 +7,19 @@ import CardFoodInCart from '../CardFoodInCart'
 
 function CartMain(props) {
     const { restaurant, infoQuantity } = props
-    console.log(infoQuantity)
+    // console.log(infoQuantity)
 
     // PRECISO FILTRAR, PRA NÃO MANDAR TUDO
     // dentro do restaurant.products encontre os ids q estão no infoQuantity
     // const filteredList = restaurant.products.filter(item => 
     //     item.id === x)
+    let filteredList = []
+    for(let item of restaurant.products){
+        if(infoQuantity.indexOf(item) !== -1){
+            filteredList.push(item)
+        }
+    }
+    console.log('filteredlist',filteredList)
 
     return (
         <main>

@@ -7,9 +7,11 @@ import CartMain from '../../components/CartMain';
 import CartFooter from '../../components/CartFooter';
 
 import restaurant from '../RestaurantPage/mock'
+import { connect } from 'react-redux';
 
-function CartPage() {
+function CartPage(props) {
   // const restaurant = { products: [] }
+  // const { restaurant } = props
   
   return (
     <S.ContentWrapper>
@@ -33,4 +35,8 @@ function CartPage() {
   )
 }
 
-export default CartPage;
+const mapStateToProps = state => ({
+  // restaurant: state.food.restaurantDetails
+});
+
+export default connect(mapStateToProps)(CartPage);
