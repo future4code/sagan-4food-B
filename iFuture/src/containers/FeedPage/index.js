@@ -9,15 +9,17 @@ import { TextField, InputAdornment } from '@material-ui/core'
 import Appbar from '../../components/Appbar';
 import CardRestaurant from '../../components/CardRestaurant';
 import Bottombar from '../../components/Bottombar';
-import { getRestaurants } from '../../actions/food';
+import { getRestaurants, getActiveOrder } from '../../actions/food';
+import OrdersInProgress from '../../components/OrdersInProgress';
 
 function FeedPage(props) {
 
-  const { goToSearch, restaurants, getRestaurants, order } = props
+  const { goToSearch, restaurants, getRestaurants, order, getActiveOrder } = props
   console.log(order)
 
   useEffect(() => {
     getRestaurants()
+    getActiveOrder()
   }, [])
 
   const [categoryClicked, setCategoryClicked] = useState(false)
@@ -93,6 +95,10 @@ function FeedPage(props) {
 
       </S.Container>
 
+      { Object.keys(order).length !== 0 &&
+        <OrdersInProgress order={order}/>
+       }
+
       <Bottombar page='home'/>
 
     </S.FeedPageWrapper>
@@ -106,7 +112,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   goToSearch: () => dispatch(push(routes.search)),
-  getRestaurants: () => dispatch(getRestaurants())
+  getRestaurants: () => dispatch(getRestaurants()),
+  getActiveOrder: () => dispatch(getActiveOrder())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(FeedPage);

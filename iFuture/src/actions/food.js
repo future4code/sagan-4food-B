@@ -86,10 +86,25 @@ export const placeOrder = (placeOrderData, restaurantId) => async (dispatch) => 
                 auth: getToken()
             }
         })
-        dispatch(setOrder(response.data.order))
+        // dispatch(setOrder(response.data.order))
         dispatch(push(routes.feed))
     } catch (error) {
         console.error(error.message)
         alert("Não foi possível realizar o pedido")
+    }
+}
+
+export const getActiveOrder = () => async (dispatch) => {
+    try {
+        const response = await axios.get(`${baseUrl}/active-order`, 
+        {
+            headers: {
+                auth: getToken()
+            }
+        })
+        dispatch(setOrder(response.data.order))
+    } catch (error) {
+        console.error(error.message)
+        alert("Não foi buscar dados do pedido atual")
     }
 }
