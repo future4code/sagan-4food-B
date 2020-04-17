@@ -10,7 +10,9 @@ import ConfirmationDialog from '../ConfirmationDialog';
 
 function CardFood(props) {
   const { setOpen, item, setItemId, infoQuantity } = props
-  // console.log(infoQuantity)
+
+  const productExist = infoQuantity.findIndex(product =>
+    product.id === item.id)
 
   const handleClickOpen = (itemId) => {
     setOpen(true);
@@ -38,31 +40,30 @@ function CardFood(props) {
         </div>
       </S.Content>
 
-      {/* {item.quantity !== 0
+      {productExist > -1
         ?
-        <> */}
-      <S.ButtonAddRemove
-        className="buttom" variant="outlined" color="default"
-        onClick={() => handleClickOpen(item.id)}
-      >
-        adicionar
-          </S.ButtonAddRemove>
-      <ConfirmationDialog />
-      {/* </>     
-        :
         <S.ButtonAddRemove className="buttom" variant="outlined" color="primary" marginRed>
           remover
         </S.ButtonAddRemove>
-      } */}
+        :
+        <>
+          <S.ButtonAddRemove
+            className="buttom" variant="outlined" color="default"
+            onClick={() => handleClickOpen(item.id)}
+          >
+            adicionar
+          </S.ButtonAddRemove>
+          <ConfirmationDialog />
+        </>
+      }
 
-      {/* {item.quantity !== 0 && */}
-
-      <S.Count color="default">
-        {/* {itemInfoQuantity.qua} */}
-        1
+      {productExist > -1
+        &&
+        <S.Count color="default">
+          {/* {itemInfoQuantity.qua} */}
+        {infoQuantity[productExist].quantity}
       </S.Count>
-
-      {/* } */}
+      }
 
     </S.CardWrapper>
   )
