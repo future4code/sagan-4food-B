@@ -11,11 +11,7 @@ import Appbar from '../../components/Appbar';
 function AdressEditPage(props) {
   const {adressInfo, getAdressInfo, addAdress, goToProfile} = props
   const { street, number, complement, neighbourhood, city, state } = adressInfo
-  
-  useEffect( () => {
-    getAdressInfo()
-  }, [])
-  
+
   console.log(adressInfo)
 
   const [inputs, setInputs] = useState({
@@ -27,6 +23,9 @@ function AdressEditPage(props) {
     estado: state
   })
 
+  useEffect( () => {
+    getAdressInfo()
+  }, [])
   
 
   const handleInputs = event => {
