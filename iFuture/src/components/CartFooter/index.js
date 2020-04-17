@@ -2,7 +2,29 @@ import React, { useState } from 'react'
 import * as S from './styles'
 
 function CartFooter(props) {
-    const { restaurant } = props
+    const { restaurant, infoQuantity, filteredList } = props
+
+
+
+    let newList = []
+    for(let item of filteredList){
+        for(let elem of infoQuantity) {
+            if (item.id === elem.id) {
+                newList.push(item.price * elem.quantity)
+            }
+        }
+    }
+
+    const valorTotal = newList.reduce((total, numero) => {
+        return total + numero
+    }, 0)
+
+    console.log(valorTotal)
+
+    // let item = filteredList.map()
+
+    // const productExist = infoQuantity.findIndex(product =>
+    //     product.id === item.id)
 
     const [payment, setpayment] = useState({ paymentMethod: '' })
 
@@ -14,9 +36,9 @@ function CartFooter(props) {
         e.preventDefault()
     }
 
-    const total = 0 // fazer a lógica
+    const total = valorTotal // fazer a lógica
     
-    const subtotal = total - restaurant.shipping
+    const subtotal = total + restaurant.shipping
 
     return (
         <S.CartFooterWrapper>
