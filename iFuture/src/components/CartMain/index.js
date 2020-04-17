@@ -7,8 +7,6 @@ import CardFoodInCart from '../CardFoodInCart'
 function CartMain(props) {
     const { restaurant, filteredList } = props
 
-    console.log('filteredlist',filteredList)
-
     return (
         <main>
             {filteredList.length === 0

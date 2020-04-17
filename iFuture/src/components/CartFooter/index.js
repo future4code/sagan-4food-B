@@ -32,8 +32,6 @@ function CartFooter(props) {
             products: infoQuantity,
             paymentMethod: payment
         }
-        console.log(restaurant)
-        console.log(restaurantId)
         placeOrder(placeOrderData, restaurantId)
     }
 

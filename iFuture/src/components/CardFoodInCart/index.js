@@ -9,7 +9,6 @@ import { removeQuantity } from '../../actions/food';
 
 function CardFoodInCart(props) {
   const { item, infoQuantity, removeQuantity } = props
-  console.log(infoQuantity)
 
   const productExist = infoQuantity.findIndex(product =>
     product.id === item.id)

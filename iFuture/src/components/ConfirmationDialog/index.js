@@ -10,7 +10,6 @@ import { Dialog, DialogActions, MenuItem } from '@material-ui/core';
 function ConfirmationDialog(props) {
 
     const { open, setOpen, itemId, setQuantity } = props
-    // console.log(itemId)
 
     const [quantityHere, setQuantityHere] = useState(0)
 
@@ -19,17 +18,11 @@ function ConfirmationDialog(props) {
     }
 
     const addQuantityAndClose = () => {
-        // adicionar a quantidade ao respectivo produtos
-        // ex: setQuantityInProduct(quantity, item.id)
-        
         const infoQuantity = {
             id: itemId,
             quantity: quantityHere
         }
         setQuantity(infoQuantity)
-
-
-        // e fecha
         setOpen(false);
     }
 
