@@ -8,10 +8,12 @@ export const ContentWrapper = styled.div`
 
 export const Container = styled.div`
   display: flex;
+  background-color: white;
   flex-direction: column;
   width: 100%;
   margin: 0 16px;
   margin-bottom: 64px;
+  height: 100vh;
 `
 
 export const AdressBoxWrapper = styled.div`

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as S from '../CartPage/styles'
 
 import { getProfile } from '../../actions/user';
+import { getActiveOrder } from '../../actions/food';
 
 import Appbar from '../../components/Appbar';
 import Bottombar from '../../components/Bottombar';
@@ -11,10 +12,11 @@ import CartFooter from '../../components/CartFooter';
 
 function CartPage(props) {
 
-  const { user, restaurant, infoQuantity, getProfile } = props
+  const { user, restaurant, infoQuantity, getProfile, getActiveOrder, order } = props
 
   useEffect(() => {
     getProfile()
+    getActiveOrder()
   }, [])
 
   let filteredList = []
@@ -43,7 +45,7 @@ function CartPage(props) {
           ?
           <>
             <CartMain filteredList={filteredList} restaurant={restaurant} />
-            <CartFooter filteredList={filteredList} infoQuantity={infoQuantity} restaurant={restaurant} />
+            <CartFooter filteredList={filteredList} infoQuantity={infoQuantity} restaurant={restaurant} order={order}/>
           </>
           :
           <S.EmptyCartWrapper>
@@ -54,8 +56,8 @@ function CartPage(props) {
         }
 
       </S.Container>
+      <Bottombar pagxe='cart' />
 
-      <Bottombar page='cart' />
     </S.ContentWrapper>
   )
 }
@@ -63,11 +65,13 @@ function CartPage(props) {
 const mapStateToProps = (state) => ({
   user: state.user.user,
   restaurant: state.food.restaurantDetails,
-  infoQuantity: state.food.infoQuantity
+  infoQuantity: state.food.infoQuantity,
+  order: state.food.order
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getProfile: () => dispatch(getProfile())
+  getProfile: () => dispatch(getProfile()),
+  getActiveOrder: () => dispatch(getActiveOrder())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartPage);

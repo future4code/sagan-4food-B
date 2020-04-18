@@ -15,6 +15,7 @@ import OrdersInProgress from '../../components/OrdersInProgress';
 function FeedPage(props) {
 
   const { goToSearch, restaurants, getRestaurants, order, getActiveOrder } = props
+  console.log(order)
 
   useEffect(() => {
     getRestaurants()
@@ -94,9 +95,9 @@ function FeedPage(props) {
 
       </S.Container>
 
-      {/* { Object.keys(order).length !== 0 &&
+      { order && Object.keys(order).length !== 0 &&
         <OrdersInProgress order={order}/>
-       } */}
+       }
 
       <Bottombar page='home'/>
 

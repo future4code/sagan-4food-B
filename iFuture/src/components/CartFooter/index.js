@@ -3,9 +3,11 @@ import * as S from './styles'
 
 import { placeOrder } from '../../actions/food'
 import { connect } from 'react-redux'
+import { push } from 'connected-react-router'
+import { routes } from '../../containers/Router'
 
 function CartFooter(props) {
-    const { restaurant, infoQuantity, filteredList, placeOrder, restaurantId } = props
+    const { restaurant, infoQuantity, filteredList, placeOrder, restaurantId, order, goToFeed } = props
 
     let newList = []
     for(let item of filteredList){
@@ -32,7 +34,13 @@ function CartFooter(props) {
             products: infoQuantity,
             paymentMethod: payment
         }
-        placeOrder(placeOrderData, restaurantId)
+        if(order && Object.keys(order).length !== 0){
+            alert('Não é possível realizar dois pedidos ao mesmo tempo. Aguarde seu seu pedido ativo ser concluído!')
+            goToFeed()
+        } else {
+            placeOrder(placeOrderData, restaurantId)
+        }
+
     }
 
     const total = valorTotal // fazer a lógica
@@ -102,7 +110,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    placeOrder: (placeOrderData, restaurantId) => dispatch(placeOrder(placeOrderData, restaurantId))
+    placeOrder: (placeOrderData, restaurantId) => dispatch(placeOrder(placeOrderData, restaurantId)),
+    goToFeed: () => dispatch(push(routes.feed))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartFooter)
