@@ -15,10 +15,10 @@ import SearchPage from "../SearchPage";
 import { ProtectedRoute } from "../../components/ProtectedRout";
 
 export const routes = {
-  login: '/',
+  login: '/login',
   signup: '/signup',
   adressRegister: '/adressRegister',
-  feed: '/feed',
+  feed: '/',
   search: '/search',
   restaurant: '/restaurant',
   profile: '/profile', 
