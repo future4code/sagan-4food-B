@@ -13,7 +13,6 @@ export const Container = styled.div`
   width: 100%;
   margin: 0 16px;
   margin-bottom: 64px;
-  height: 100vh;
 `
 
 export const AdressBoxWrapper = styled.div`
