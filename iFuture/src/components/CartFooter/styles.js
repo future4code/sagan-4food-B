@@ -50,4 +50,5 @@ export const ConfirmButtonWrapper = styled(Button)`
     border-radius: 2px;
     background-color: ${props => props.color};
     margin: ${props => props.marginTop} 0 16px 0;
+    margin-bottom: 64px;
 `

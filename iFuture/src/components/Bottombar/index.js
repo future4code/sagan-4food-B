@@ -26,7 +26,9 @@ function Bottombar(props) {
   }
 
   const onClickCart = async () => {
+    if(restaurantId !== 0) {
       await getRestaurantDetail(restaurantId)
+    }
     goToCart()
   }
 

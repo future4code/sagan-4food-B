@@ -27,9 +27,6 @@ export const addAdress = (addAdressData) => async (dispatch) => {
         const token = response.data.token
         localStorage.clear()
         localStorage.setItem("token", token)
-
-        // dispatch(setFullAddress(addAdressData))
-
     } catch (error) {
         console.error(error.message)
         alert("Não foi possivel cadastrar esse endereço, tente novamente mais tarde!")
@@ -41,7 +38,6 @@ export const login = loginData => async (dispatch) => {
         const response = await axios.post(`${baseUrl}/login`, loginData)
         const token = response.data.token;
         localStorage.setItem('token', token)
-
         dispatch(push(routes.feed))
     } catch (erro) {
         console.error(erro.message)
@@ -49,9 +45,6 @@ export const login = loginData => async (dispatch) => {
     }
 }
 
-
-
-///////////////////// AINDA NÃO INTEGRADO - depende de login (e demais)
 export const setProfile = (info) => ({
     type: 'SET_PROFILE',
     payload: {
@@ -90,7 +83,8 @@ export const getFullAdress = () => async (dispatch) => {
             })
             dispatch(setFullAddress(response.data.address))
     }catch(error){
-        console.log(error.message)
+        console.error(error.message)
+        alert("Não foi possível acessar o endereço do usuário..")
     }
 }
 

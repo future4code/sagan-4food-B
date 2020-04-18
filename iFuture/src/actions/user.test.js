@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { baseUrl, getToken } from '../utils/constants'
 import {
     addAdress,
     getFullAdress,
@@ -14,7 +13,6 @@ import {
 describe('User actions', () => {
 
     describe('Actions creators', () => {
-
         const mockTest = "test"
 
         it('setProfile', () => {
@@ -40,37 +38,21 @@ describe('User actions', () => {
 
         let mockDispatch
         let mockTest
-
         beforeEach(() => {
             mockDispatch = jest.fn()
             mockTest = "test"
-            localStorage.setItem = jest.fn()
         });
 
-
         it('addAdress', async () => {
-
             axios.put = jest.fn(() => ({ data: { fullAddress: mockTest } }))
-
-            const response = axios.put() // aqui ela é síncrona = responde instantaneamente
-            console.log(response.data)
-
+            const response = axios.put()          
             await addAdress()(mockDispatch)
-
-            // expect(mockDispatch).toHaveBeenCalled()
-
-            // expect(mockDispatch).toHaveBeenCalledWith({
-            //     type: "SET_FULL_ADDRESS",
-            //     payload: {
-            //         fullAddress: mockTest
-            //     }
-            // })
-
+            // não dá pra testar se foi chamado pq ele não tem dispatch
         })
 
 
         it('getFullAdress', async () => {
-
+            
             axios.get = jest.fn(() => ({ data: { address: mockTest } }))
 
             await getFullAdress()(mockDispatch)
@@ -88,18 +70,18 @@ describe('User actions', () => {
 
         it('getProfile', async () => {
 
-            axios.get = jest.fn(() => ({ data: mockTest }))
+            axios.get = jest.fn(() => ({ data: { user: mockTest} }))
 
             await getProfile()(mockDispatch)
 
             expect(mockDispatch).toHaveBeenCalled()
 
-            // expect(mockDispatch).toHaveBeenCalledWith({
-            //     type: "SET_PROFILE",
-            //     payload: {
-            //         info: mockTest
-            //     }
-            // })
+            expect(mockDispatch).toHaveBeenCalledWith({
+                type: "SET_PROFILE",
+                payload: {
+                    info: mockTest
+                }
+            })
 
         })
 
@@ -116,9 +98,11 @@ describe('User actions', () => {
 
         it('signup', async () => {
 
-            // axios.post = jest.fn()
+            axios.post = jest.fn(() => ({ data: { token: mockTest } }))
 
-            // await signup(mockTest)(mockDispatch)
+            await signup(mockTest)(mockDispatch)
+
+            expect(mockDispatch).toHaveBeenCalled()
 
         })
 

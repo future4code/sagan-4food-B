@@ -5,6 +5,7 @@ import { routes } from '../../containers/Router'
 
 import * as S from './styles'
 import { Toolbar, Typography } from '@material-ui/core'
+import { PowerSettingsNewRounded } from '@material-ui/icons'
 
 function Appbar(props) {
     const {
@@ -15,6 +16,11 @@ function Appbar(props) {
     } = props
 
     const buttonReturn = <img src={require("../../assets/back.svg")} alt='Voltar' />
+
+    const logout = () => {
+        localStorage.clear()
+        goToFeed()
+    }
 
     let content
     switch (page) {
@@ -29,6 +35,11 @@ function Appbar(props) {
         case 'feed':
             content = <S.CenteredContent>
                 <Typography variant="h6">Ifuture</Typography>
+
+                {/* Sei que não tem logout no design, mas fiz pra deixar a usabilidade melhor na hora de apresentar como portfólio */}
+                <S.Logout size="small" color='primary' onClick={logout}>
+                    <PowerSettingsNewRounded/>
+                </S.Logout>
             </S.CenteredContent>
             break;
 

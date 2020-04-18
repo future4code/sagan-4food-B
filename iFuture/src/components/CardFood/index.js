@@ -9,9 +9,7 @@ import { removeQuantity, setRestaurantId } from '../../actions/food'
 import ConfirmationDialog from '../ConfirmationDialog';
 
 function CardFood(props) {
-  const { setOpen, item, restaurantId, setRestaurantId, setItemId, infoQuantity, removeQuantity, idRestaurant } = props
-  console.log("RestaurantId componente pai: ", restaurantId)
-  console.log("Idrestaurant vem da store: ", idRestaurant)
+  const { setOpen, item, restaurantId, setRestaurantId, setItemId, infoQuantity, removeQuantity } = props
 
   const productExist = infoQuantity.findIndex(product =>
     product.id === item.id)
@@ -20,7 +18,6 @@ function CardFood(props) {
     setOpen(true);
     setItemId(itemId)
     setRestaurantId(restaurantIdHere)
-    console.log("Clique: ", restaurantIdHere)
   };
 
   const clickToRemove = (itemId) => {
@@ -81,7 +78,6 @@ function CardFood(props) {
 
 const mapStateToProps = state => ({
   infoQuantity: state.food.infoQuantity,
-  idRestaurant: state.food.restaurantId
 })
 
 const mapDispatchToProps = dispatch => ({

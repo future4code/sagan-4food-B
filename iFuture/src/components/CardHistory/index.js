@@ -6,12 +6,12 @@ function CardHistory(props){
 
     const { order } = props
 
-    const date = turnsDate(order.date)
+    const date = turnsDate(order.createdAt)
 
     return (
         <S.Order>
             <S.TextStyled red>
-                {order.name}
+                {order.restaurantName}
             </S.TextStyled>
 
             <S.TextStyled sizep spacing>
@@ -19,7 +19,7 @@ function CardHistory(props){
             </S.TextStyled>
 
             <S.TextStyled weight>
-                SUBTOTAL {order.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                SUBTOTAL {order.totalPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
             </S.TextStyled>
             
         </S.Order>
