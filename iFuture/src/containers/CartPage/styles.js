@@ -17,7 +17,7 @@ export const Container = styled.div`
 export const AdressBoxWrapper = styled.div`
 background-color: #eeeeee;
 width: 100%;
-height: 76px;
+min-height: 76px;
 margin: 0 -16px;
 padding: 16px;
 margin-bottom: 16px;
@@ -25,7 +25,7 @@ margin-bottom: 16px;
 
 export const Text = styled(Typography)`
   font-size: 16px;
-  height: 16px;
+  min-height: 16px;
   letter-spacing: -0.4px;
   margin-bottom: 8px;
   color: ${props => props.gray ? "#b8b8b8" : "#000000"};
@@ -34,7 +34,7 @@ export const Text = styled(Typography)`
 
 export const EmptyCartWrapper = styled.div`
     text-align: center;
-    height: 42px;
+    min-height: 42px;
     margin: 8px 0 33px;
     width: 92%;
 `
