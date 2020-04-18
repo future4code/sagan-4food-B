@@ -1,16 +1,15 @@
 # Labenu | Full-Stack Web Development Bootcamp
 Desenvolvimento de aplicações completas, incluindo frontend Web com React e backend com Node.js.
 
-<p align="center">
-  <img  width='500' src='https://user-images.githubusercontent.com/45580434/74607837-f69f5e00-50ba-11ea-97e0-62fab855bcb6.png'>
-</p>
+![Screenshot_1](https://user-images.githubusercontent.com/45580434/79641791-06e1c100-8170-11ea-8ecf-b6c889805d55.png)
+<br>
 
 ## Frontend - Projeto Final: iFuture
 
 Site do projeto: [link](http://ifuture-sagan.surge.sh/login)
 
 <p align="center">
-  <img  height='400' src=''>
+  <img  height='600' src='https://user-images.githubusercontent.com/45580434/79641732-bd917180-816f-11ea-810b-59ee03a3367b.gif'>
 </p>
 
 <p align="center">
