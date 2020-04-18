@@ -94,9 +94,9 @@ function FeedPage(props) {
 
       </S.Container>
 
-      { Object.keys(order).length !== 0 &&
+      {/* { Object.keys(order).length !== 0 &&
         <OrdersInProgress order={order}/>
-       }
+       } */}
 
       <Bottombar page='home'/>
 
