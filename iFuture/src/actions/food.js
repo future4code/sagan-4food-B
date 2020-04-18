@@ -79,7 +79,8 @@ export const setOrder = (orderData) => ({
 
 export const placeOrder = (placeOrderData, restaurantId) => async (dispatch) => {
     try {
-        const response = await axios.post(`${baseUrl}/restaurants/${restaurantId}/order`, 
+        const response = 
+        await axios.post(`${baseUrl}/restaurants/${restaurantId}/order`, 
         placeOrderData, 
         {
             headers: {
