@@ -5,7 +5,7 @@ import { signup } from '../../actions/user'
 import Appbar from '../../components/Appbar';
 
 import * as S from './styles'
-import { InputAdornment, TextField } from '@material-ui/core';
+import { InputAdornment } from '@material-ui/core';
 
 const logo = <img src={require("../../assets/logo-future-eats-invert.svg")} alt='Voltar' />
 
@@ -61,7 +61,7 @@ class SignupPage extends Component {
     if (password !== confirm) {
       alert('Senhas não conferem')
     } else {
-      // this.props.signup(signupData)
+      this.props.signup(signupData)
     }
   }
 
@@ -116,7 +116,8 @@ class SignupPage extends Component {
         endAdornment: <InputAdornment position="end">
           <img
             onClick={this.setHidenPassword}
-            src={this.state.hidenPassword ? require('../../assets/olho.png') : require('../../assets/senha.png')} />
+            src={this.state.hidenPassword ? require('../../assets/olho.png') : require('../../assets/senha.png')} 
+            alt='password'/>
         </InputAdornment>
       },
       {
@@ -130,7 +131,8 @@ class SignupPage extends Component {
         endAdornment: <InputAdornment position="end">
           <img
             onClick={this.setHidenConfirm}
-            src={this.state.hidenConfirm ? require('../../assets/olho.png') : require('../../assets/senha.png')} />
+            src={this.state.hidenConfirm ? require('../../assets/olho.png') : require('../../assets/senha.png')} 
+            alt='password'/>
         </InputAdornment>
       }
     ]
