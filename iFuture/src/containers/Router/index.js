@@ -13,6 +13,8 @@ import CartPage from "../CartPage";
 import RestaurantPage from "../RestaurantPage";
 import SearchPage from "../SearchPage";
 import { ProtectedRoute } from "../../components/ProtectedRout";
+import { SemiProtectedRoute } from "../../components/SemiProtectedRoute";
+
 
 export const routes = {
   login: '/login',
@@ -34,7 +36,7 @@ function Router(props) {
         <Route exact path={routes.login} component={() => <LoginPage/>} />
         <Route exact path={routes.signup} component={() => <SignupPage/>} />
         
-        <ProtectedRoute exact path={routes.adressRegister} component={() => <AdressRegisterPage/>} />
+        <SemiProtectedRoute exact path={routes.adressRegister} component={() => <AdressRegisterPage/>} />
         
         <ProtectedRoute exact path={routes.feed} component={() => <FeedPage/>} />
         <ProtectedRoute exact path={routes.search} component={() => <SearchPage/>} />
