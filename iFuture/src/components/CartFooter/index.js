@@ -7,7 +7,7 @@ import * as S from './styles'
 import { placeOrder } from '../../actions/food'
 import { routes } from '../../containers/Router'
 
-function CartFooter(props) {
+export function CartFooter(props) {
     const { restaurant, infoQuantity, filteredList, placeOrder, restaurantId, order, goToFeed } = props
 
     const [payment, setpayment] = useState('')

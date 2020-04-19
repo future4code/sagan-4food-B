@@ -6,18 +6,18 @@ import { Order } from './styles'
 describe('Component CardHistory', () => {
 
     let component
-    let order
+    let cardHistory
     let mockedOrder
     beforeEach( () => {
         mockedOrder = {
             totalPrice: []
         }
         component = shallow(<CardHistory order={mockedOrder}/>)
-        order = component.find(Order)
+        cardHistory = component.find(Order)
     })
 
     it('the component CardHistory exists', () => {
-        expect(order).toHaveLength(1)
+        expect(cardHistory).toHaveLength(1)
     })
 
 })

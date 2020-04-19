@@ -6,7 +6,7 @@ import * as S from './styles'
 import { CardContent } from '@material-ui/core'
 import { connect } from 'react-redux'
 
-function CardRestaurant(props) {
+export function CardRestaurant(props) {
 
     const { restaurant, getRestaurantDetail } = props
 
