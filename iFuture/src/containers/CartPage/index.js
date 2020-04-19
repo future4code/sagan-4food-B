@@ -41,23 +41,12 @@ function CartPage(props) {
           <S.Text> {user.address} </S.Text>
         </S.AdressBoxWrapper>
 
-        {Object.keys(restaurant).length !== 0
-          ?
-          <>
-            <CartMain filteredList={filteredList} restaurant={restaurant} />
-            <CartFooter filteredList={filteredList} infoQuantity={infoQuantity} restaurant={restaurant} order={order}/>
-          </>
-          :
-          <S.EmptyCartWrapper>
-            <S.Text>
-              Carrinho Vazio
-            </S.Text>
-          </S.EmptyCartWrapper>
-        }
+        <CartMain filteredList={filteredList} restaurant={restaurant} />
+        <CartFooter filteredList={filteredList} infoQuantity={infoQuantity} restaurant={restaurant} order={order} />
 
       </S.Container>
+      
       <Bottombar pagxe='cart' />
-
     </S.ContentWrapper>
   )
 }

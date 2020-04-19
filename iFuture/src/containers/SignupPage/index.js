@@ -57,7 +57,6 @@ class SignupPage extends Component {
       cpf: cpf,
       password: password
     }
-    console.log(signupData)
     if (password !== confirm) {
       alert('Senhas não conferem')
     } else {

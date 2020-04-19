@@ -15,7 +15,6 @@ import OrdersInProgress from '../../components/OrdersInProgress';
 function FeedPage(props) {
 
   const { goToSearch, restaurants, getRestaurants, order, getActiveOrder } = props
-  console.log(order)
 
   useEffect(() => {
     getRestaurants()
