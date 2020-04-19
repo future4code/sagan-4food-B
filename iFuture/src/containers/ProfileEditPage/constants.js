@@ -23,6 +23,6 @@ export const editUserProfile = [
       type: "text",
       required: true,
       pattern: "[0-9]{3,}[.]{1,}[0-9]{3,}[.]{1,}[0-9]{3,}[-]{1,}[0-9]{2,}",
-      title: "Digite seu CPF sem pontos e espaços."
+      title: "Digite seu CPF com pontos e traço."
     }
   ]
