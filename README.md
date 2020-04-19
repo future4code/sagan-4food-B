@@ -6,7 +6,7 @@ Desenvolvimento de aplicações completas, incluindo frontend Web com React e ba
 
 ## Frontend - Projeto Final: iFuture
 
-Site do projeto: [link](http://ifuture-sagan.surge.sh/login)
+Site do projeto: [link](http://ifuture-sagan.surge.sh/)
 
 <p align="center">
   <img  height='600' src='https://user-images.githubusercontent.com/45580434/79641732-bd917180-816f-11ea-810b-59ee03a3367b.gif'>
