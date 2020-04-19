@@ -11,7 +11,6 @@ import RestaurantDishes from '../../components/RestaurantDishes';
 
 function RestaurantPage(props) {
   const { mock, goToFeed } = props
-  console.log(mock)
 
   useEffect(() => {
     if (Object.keys(mock).length === 0) {
