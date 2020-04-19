@@ -2,7 +2,7 @@ import React from 'react'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import { Typography1, Typography2, Typography3, CardContentStyled, CardStyled, DivImagem } from './styled'
 
-function OrdersInProgress(props) {
+export function OrdersInProgress(props) {
   const { order } = props
   return (
     <>

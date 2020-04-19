@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import * as S from './styles'
 
-function Loading(){
+export function Loading(){
 
     const [open, setOpen] = useState(true)
 

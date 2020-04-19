@@ -7,7 +7,7 @@ import { setQuantity } from '../../actions/food'
 import * as S from './styles'
 import { Dialog, DialogActions, MenuItem } from '@material-ui/core';
 
-function ConfirmationDialog(props) {
+export function ConfirmationDialog(props) {
 
     const { open, setOpen, itemId, setQuantity } = props
 
@@ -41,6 +41,7 @@ function ConfirmationDialog(props) {
                     boxShadow: "none",
                 },
             }}
+            id="dialog"
         >
             <S.DialogTitleStyled>
                 Selecione a quantidade desejada
