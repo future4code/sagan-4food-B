@@ -7,7 +7,7 @@ import { BottomNavigationAction } from '@material-ui/core';
 import { DivWrapper } from './styles'
 import { getRestaurantDetail } from '../../actions/food';
 
-function Bottombar(props) {
+export function Bottombar(props) {
   const { page, goToCart, goToFeed, goToProfile, restaurantId, getRestaurantDetail } = props
 
   let iconHome = <img src={require("../../assets/homepage-grey.svg")} alt='CartPage' />

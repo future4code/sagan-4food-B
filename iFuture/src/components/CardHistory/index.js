@@ -2,7 +2,7 @@ import React from 'react'
 import * as S from './styles'
 import { turnsDate } from './constants'
 
-function CardHistory(props){
+export function CardHistory(props){
 
     const { order } = props
 

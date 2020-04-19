@@ -7,7 +7,7 @@ import { Typography } from '@material-ui/core';
 import * as S from './styles'
 import { removeQuantity } from '../../actions/food';
 
-function CardFoodInCart(props) {
+export function CardFoodInCart(props) {
   const { item, infoQuantity, removeQuantity } = props
 
   const productExist = infoQuantity.findIndex(product =>
