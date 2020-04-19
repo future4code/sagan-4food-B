@@ -38,7 +38,12 @@ export const login = loginData => async (dispatch) => {
         const response = await axios.post(`${baseUrl}/login`, loginData)
         const token = response.data.token;
         localStorage.setItem('token', token)
-        dispatch(push(routes.feed))
+        if(response.data.user.hasAddress){
+            dispatch(push(routes.feed))
+        } else {
+            dispatch(push(routes.adressRegister))
+            alert('É necessário preencher os dados do endereço para continuar')
+        }
     } catch (erro) {
         console.error(erro.message)
         alert("Não foi possivel fazer o login, tente novamente mais tarde!")

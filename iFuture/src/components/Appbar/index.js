@@ -7,7 +7,7 @@ import * as S from './styles'
 import { Toolbar, Typography } from '@material-ui/core'
 import { PowerSettingsNewRounded } from '@material-ui/icons'
 
-function Appbar(props) {
+export function Appbar(props) {
     const {
         page,
         goToLogin,

@@ -63,7 +63,10 @@ function LoginPage(props) {
         value={userInfo.password || ''}
         onChange={getUserInfo}
         required
-        // inputProps={{ pattern: '^.{6,}' }}
+        inputProps={{ 
+          pattern: '.{6,}',
+          title: 'A senha deve ter no mínimo 6 caracteres'
+        }}
         InputLabelProps={{
           shrink: true,
         }}
@@ -74,8 +77,7 @@ function LoginPage(props) {
               onClick={()=>setHidenPassword(!hidenPassword)}
               src={hidenPassword? require('../../assets/olho.png') : require('../../assets/senha.png')}/>
             </InputAdornment>
-          ),
-          pattern: '^.{6,}'
+          )
         }}
         />
 

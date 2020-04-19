@@ -82,15 +82,15 @@ class AdressEditPage extends React.Component {
             InputLabelProps={{
               shrink: true,
             }}
-            inputProps={{
-              pattern: "[a-zA-Zà-úÀ-ú0-9 ]*",
-              title: "O logradouro aceita letras e numeros"
+            inputProps={{ 
+              pattern: ".{3,}",
+              title: "Logradouro aceita no mínimo 3 caracteres" 
             }}
           />
           <S.Input
             name="numero"
             required
-            type="text"
+            type="number"
             id="outlined-required"
             label="Número"
             value={numero}
@@ -100,10 +100,6 @@ class AdressEditPage extends React.Component {
             variant="outlined"
             InputLabelProps={{
               shrink: true,
-            }}
-            inputProps={{
-              pattern: "[0-9]*",
-              title: "Aceita apenas números"
             }}
           />
           <S.Input
@@ -118,10 +114,6 @@ class AdressEditPage extends React.Component {
             variant="outlined"
             InputLabelProps={{
               shrink: true,
-            }}
-            inputProps={{
-              pattern: "[a-zA-Zà-úÀ-ú0-9 ]*",
-              title: "Complemento aceita letras e números"
             }}
           />
           <S.Input
@@ -177,7 +169,7 @@ class AdressEditPage extends React.Component {
               shrink: true,
             }}
             inputProps={{
-              pattern: "[A-Z ]{2,2}",
+              pattern: "[A-Z ]{2}",
               title: "Aceita apenas a sigla do Estado com duas letras maiúsculas"
             }}
           />

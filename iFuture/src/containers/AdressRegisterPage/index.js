@@ -49,7 +49,6 @@ function AdressRegisterPage(props) {
             name="logradouro"
             required
             type="text"
-            //id="outlined-required"
             label="Logradouro"
             value={logradouro || ""}
             onChange={handleInputs}
@@ -59,14 +58,14 @@ function AdressRegisterPage(props) {
               shrink: true,
             }}
             inputProps={{ 
-              pattern: "[a-zA-Zà-úÀ-ú0-9 ]*",
-              title: "O logradouro aceita letras e numeros" 
+              pattern: ".{3,}",
+              title: "Logradouro aceita no mínimo 3 caracteres" 
             }}
           />
           <S.Input
             name="numero"
             required
-            type="text"
+            type="number"
             id="outlined-required"
             label="Número"
             value={numero}
@@ -75,10 +74,6 @@ function AdressRegisterPage(props) {
             variant="outlined"
             InputLabelProps={{
               shrink: true,
-            }}
-            inputProps={{ 
-              pattern: "[0-9]*",
-              title: "Aceita apenas números"
             }}
           />
           <S.Input
@@ -92,10 +87,6 @@ function AdressRegisterPage(props) {
             variant="outlined"
             InputLabelProps={{
               shrink: true,
-            }}
-            inputProps={{ 
-              pattern: "[a-zA-Zà-úÀ-ú0-9 ]*",
-              title: "Complemento aceita letras e números" 
             }}
           />
           <S.Input
@@ -148,7 +139,7 @@ function AdressRegisterPage(props) {
               shrink: true,
             }}
             inputProps={{ 
-              pattern: "[A-Z ]{2,2}",
+              pattern: "[A-Z ]{2}",
               title: "Aceita apenas a sigla do Estado com duas letras maiúsculas" 
             }}
           />

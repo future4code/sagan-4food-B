@@ -9,7 +9,7 @@ function CartMain(props) {
 
     return (
         <main>
-            {filteredList.length === 0
+            {filteredList.length === 0 || Object.keys(restaurant).length === 0
                 ?
                 <S.EmptyCartWrapper>
                     <S.Text>
