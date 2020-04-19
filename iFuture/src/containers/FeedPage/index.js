@@ -19,7 +19,7 @@ function FeedPage(props) {
   useEffect(() => {
     getRestaurants()
     getActiveOrder()
-  }, [])
+  }, [getRestaurants, getActiveOrder])
 
   const [categoryClicked, setCategoryClicked] = useState(false)
   const [categorySelected, setCategorySelected] = useState('')

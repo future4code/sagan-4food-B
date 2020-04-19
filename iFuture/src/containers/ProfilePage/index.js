@@ -18,7 +18,7 @@ function ProfilePage(props) {
   useEffect(() => {
     getProfile()
     getOrdersHistory()
-  }, [])
+  }, [getProfile, getOrdersHistory])
 
   return (
     <S.ProfilePageWrapper>

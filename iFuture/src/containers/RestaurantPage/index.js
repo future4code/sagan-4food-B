@@ -16,7 +16,7 @@ function RestaurantPage(props) {
     if (Object.keys(mock).length === 0) {
       goToFeed()
     }
-  }, [])
+  }, [mock, goToFeed])
 
   return (
     <div>
