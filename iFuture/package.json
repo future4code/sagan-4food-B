@@ -1,7 +1,7 @@
 {
-  "name": "future-foods-boilerplate",
+  "name": "ifuture",
   "version": "1.0.0",
-  "description": "",
+  "description": "Online delivery platform, developed by Mackson Welton Dias da Silva, Rosana Carolino Rezende, Thales Fernando Milanezi and Vinícius Abuhid",
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
