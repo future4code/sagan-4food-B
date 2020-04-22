@@ -15,7 +15,7 @@ export const signup = (signupData) => async (dispatch) => {
         dispatch(push(routes.adressRegister))
     } catch (error) {
         console.error(error.message)
-        alert("Não foi possivel criar seu cadastro, tente novamente mais tarde !")
+        // alert("Não foi possivel criar seu cadastro, tente novamente mais tarde !")
     }
 }
 
@@ -29,11 +29,13 @@ export const addAdress = (addAdressData) => async (dispatch) => {
                 }
             })
         const token = response.data.token
+        const hasAddress = response.data.user.hasAddress
         localStorage.clear()
         localStorage.setItem("token", token)
+        localStorage.setItem('hasAddress', hasAddress)
     } catch (error) {
         console.error(error.message)
-        alert("Não foi possivel cadastrar esse endereço, tente novamente mais tarde!")
+        // alert("Não foi possivel cadastrar esse endereço, tente novamente mais tarde!")
     }
 }
 
