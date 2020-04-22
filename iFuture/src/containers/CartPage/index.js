@@ -17,7 +17,7 @@ function CartPage(props) {
   useEffect(() => {
     getProfile()
     getActiveOrder()
-  }, [])
+  }, [getProfile, getActiveOrder])
 
   let filteredList = []
   if (restaurant.products) {

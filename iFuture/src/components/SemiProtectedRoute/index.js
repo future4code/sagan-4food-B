@@ -1,9 +1,8 @@
 import React from 'react';
 import { Route, Redirect } from "react-router-dom";
 
-export const ProtectedRoute = ({ component: Component, ...rest }) => {
+export const SemiProtectedRoute = ({ component: Component, ...rest }) => {
     const token = localStorage.getItem('token')
-    const hasAddress = localStorage.getItem('hasAddress')
     const getRedirectProps = (location) => ({
         pathname: "/login", // redireciona pro login
         from: location
@@ -12,7 +11,7 @@ export const ProtectedRoute = ({ component: Component, ...rest }) => {
         <Route
             {...rest}
             render={props => {
-                return token && hasAddress
+                return token
                     ? (<Component {...props} />)
                     : (<Redirect to={getRedirectProps(props.location)} />)
             }}

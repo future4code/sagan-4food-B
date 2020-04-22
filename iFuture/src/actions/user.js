@@ -8,10 +8,14 @@ export const signup = (signupData) => async (dispatch) => {
         const response = await axios.post(`${baseUrl}/signup`, signupData)
         const token = response.data.token
         localStorage.setItem("token", token)
+        const hasAddress = response.data.user.hasAddress
+        if(response.data.user.hasAddress){
+            localStorage.setItem('hasAddress', hasAddress)
+        }
         dispatch(push(routes.adressRegister))
     } catch (error) {
         console.error(error.message)
-        alert("Não foi possivel criar seu cadastro, tente novamente mais tarde !")
+        // alert("Não foi possivel criar seu cadastro, tente novamente mais tarde !")
     }
 }
 
@@ -25,11 +29,13 @@ export const addAdress = (addAdressData) => async (dispatch) => {
                 }
             })
         const token = response.data.token
+        const hasAddress = response.data.user.hasAddress
         localStorage.clear()
         localStorage.setItem("token", token)
+        localStorage.setItem('hasAddress', hasAddress)
     } catch (error) {
         console.error(error.message)
-        alert("Não foi possivel cadastrar esse endereço, tente novamente mais tarde!")
+        // alert("Não foi possivel cadastrar esse endereço, tente novamente mais tarde!")
     }
 }
 
@@ -37,8 +43,10 @@ export const login = loginData => async (dispatch) => {
     try {
         const response = await axios.post(`${baseUrl}/login`, loginData)
         const token = response.data.token;
-        localStorage.setItem('token', token)
+        const hasAddress = response.data.user.hasAddress
+        localStorage.setItem("token", token)
         if(response.data.user.hasAddress){
+            localStorage.setItem('hasAddress', hasAddress)
             dispatch(push(routes.feed))
         } else {
             dispatch(push(routes.adressRegister))

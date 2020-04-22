@@ -8,7 +8,7 @@ import { removeQuantity, setRestaurantId } from '../../actions/food'
 
 import ConfirmationDialog from '../ConfirmationDialog';
 
-function CardFood(props) {
+export function CardFood(props) {
   const { setOpen, item, restaurantId, setRestaurantId, setItemId, infoQuantity, removeQuantity } = props
 
   const productExist = infoQuantity.findIndex(product =>

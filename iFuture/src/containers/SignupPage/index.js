@@ -170,12 +170,13 @@ class SignupPage extends Component {
                     shrink: true,
                   }}
                   InputProps={{
-                    endAdornment: field.endAdornment
+                    endAdornment: field.endAdornment,
+                    inputProps: {
+                      pattern: field.pattern,
+                      title: field.title
+                    }
                   }}
-                  inputProps={{
-                    pattern: field.pattern,
-                    title: field.title
-                  }}
+                  
                 />
               )
             })}

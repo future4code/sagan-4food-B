@@ -4,7 +4,7 @@ import * as S from './styles'
 
 import CardFoodInCart from '../CardFoodInCart'
 
-function CartMain(props) {
+export function CartMain(props) {
     const { restaurant, filteredList } = props
 
     return (
